@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { checklistData } from "@shared/schema";
 import { CodedLogo } from "@/components/CodedLogo";
 import { ProgressBar } from "@/components/ProgressBar";
@@ -34,11 +34,13 @@ export default function Checklist() {
     queryKey: ["/api/progress"],
   });
 
-  const completedTasks = new Set<string>(
-    Object.entries(serverProgress || {})
-      .filter(([_, completed]) => completed)
-      .map(([taskId]) => taskId)
-  );
+  const completedTasks = useMemo(() => {
+    return new Set<string>(
+      Object.entries(serverProgress || {})
+        .filter(([_, completed]) => completed)
+        .map(([taskId]) => taskId)
+    );
+  }, [serverProgress]);
 
   useEffect(() => {
     if (progressError) {
@@ -103,11 +105,13 @@ export default function Checklist() {
   });
 
   useEffect(() => {
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(Array.from(completedTasks))
-    );
-  }, [completedTasks]);
+    if (serverProgress) {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(Array.from(completedTasks))
+      );
+    }
+  }, [serverProgress, completedTasks]);
 
   const totalTasks = checklistData.reduce(
     (sum, section) => sum + section.tasks.length,

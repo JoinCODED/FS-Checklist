@@ -33,7 +33,10 @@ This application helps new students complete their onboarding tasks before start
 - **Secure Access**: Protected routes with automatic session management
 
 ### Design
-- **CODED Branding**: Custom color palette using CODED blue (primary) and green (accent)
+- **CODED Branding**: Official color palette
+  - Navy Blue #14243F (Brand/Primary color)
+  - Secondary Blue #004AA3 (Secondary color)
+  - Light Gray #D2D2D2 (Tertiary color)
 - **Typography**: Manrope for headings, Helvetica Neue for body text
 - **Consistent Spacing**: Professional spacing and visual hierarchy
 - **Accessible**: Proper ARIA labels, keyboard navigation, color contrast
@@ -181,7 +184,10 @@ This application helps new students complete their onboarding tasks before start
 ## User Preferences
 
 - Font: Manrope (headings), Helvetica Neue (body)
-- Brand Colors: Blue primary (#1E90FF), Green accent (#10B981)
+- Official Brand Colors:
+  - Navy Blue #14243F (Brand/Primary)
+  - Secondary Blue #004AA3 (Secondary)
+  - Light Gray #D2D2D2 (Tertiary)
 - Design Style: Modern, clean, student-friendly
 - No emoji usage in UI
 
