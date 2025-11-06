@@ -9,30 +9,41 @@ export function CodedLogo({ className = "" }: { className?: string }) {
         xmlns="http://www.w3.org/2000/svg"
         className="flex-shrink-0"
       >
-        <rect width="40" height="40" rx="8" className="fill-[#14243F] dark:fill-white" />
-        <path
-          d="M15 12L10 20L15 28"
-          className="stroke-white dark:stroke-[#14243F]"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+        <rect 
+          width="40" 
+          height="40" 
+          rx="8" 
+          fill="#14243F"
+          className="dark:fill-white"
         />
         <path
-          d="M25 12L30 20L25 28"
-          className="stroke-white dark:stroke-[#14243F]"
-          strokeWidth="2.5"
+          d="M14 10 L10 10 L10 30 L14 30"
+          stroke="white"
+          strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
+          className="dark:stroke-[#14243F]"
         />
-        <line
-          x1="22"
-          y1="10"
-          x2="18"
-          y2="30"
-          className="stroke-white dark:stroke-[#14243F]"
-          strokeWidth="2.5"
+        <path
+          d="M26 10 L30 10 L30 30 L26 30"
+          stroke="white"
+          strokeWidth="3"
           strokeLinecap="round"
+          strokeLinejoin="round"
+          className="dark:stroke-[#14243F]"
         />
+        <text
+          x="20"
+          y="26"
+          fill="white"
+          fontSize="20"
+          fontWeight="600"
+          textAnchor="middle"
+          fontFamily="system-ui, -apple-system, sans-serif"
+          className="dark:fill-[#14243F]"
+        >
+          C
+        </text>
       </svg>
       <span className="text-2xl font-bold tracking-tight">
         <span className="text-foreground">CODED</span>

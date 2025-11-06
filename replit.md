@@ -170,6 +170,14 @@ This application helps new students complete their onboarding tasks before start
 
 ## Recent Changes
 
+**2025-11-06**: Theme-aware UI components matching CODED brand guidelines
+- Updated all UI components to use official CODED brand colors with theme adaptation:
+  - Checkboxes: Navy (#14243F) in light mode, white in dark mode
+  - Progress percentage text: Navy in light mode, white in dark mode
+  - CODED logo icon: Navy background with white [C] in light mode, white background with navy [C] in dark mode
+- Logo redesigned to match official CODED brand with square brackets [C] design
+- All components tested and verified in both light and dark themes
+
 **2025-11-06**: Important tasks reminder and PDF export features
 - Implemented Important Tasks Reminder notification system:
   - Displays dismissible card with all incomplete important tasks
