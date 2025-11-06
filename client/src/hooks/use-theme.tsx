@@ -18,22 +18,18 @@ const ThemeProviderContext = createContext<ThemeProviderState | undefined>(
 
 export function ThemeProvider({
   children,
-  defaultTheme = "light",
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem("coded-theme") as Theme) || defaultTheme
-  );
+  const theme: Theme = "dark";
 
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
-    root.classList.add(theme);
-    localStorage.setItem("coded-theme", theme);
-  }, [theme]);
+    root.classList.add("dark");
+  }, []);
 
   const value = {
     theme,
-    setTheme,
+    setTheme: () => {},
   };
 
   return (
