@@ -32,7 +32,7 @@ export function ImportantTasksReminder({ incompleteTasks, onTaskClick }: Importa
                 <div className="flex flex-col gap-1">
                   <button
                     onClick={() => onTaskClick(task.id)}
-                    className="text-left hover:underline text-sm text-foreground font-medium"
+                    className="text-left text-sm text-foreground font-medium"
                     data-testid={`link-important-task-${task.id}`}
                   >
                     {task.title} <span className="text-muted-foreground">({sectionTitle})</span>
