@@ -272,7 +272,7 @@ export default function Checklist() {
       <footer className="border-t border-border py-8 mt-16">
         <div className="container max-w-4xl mx-auto px-4 text-center">
           <p className="text-sm text-muted-foreground">
-            CODED Human Capital Development Company © 2025
+            CODED Human Capital Development Company © 2025 The Go To Place For Tech Education
           </p>
           <p className="text-xs text-muted-foreground mt-2">
             Vibe Coded by Yousif Aldousari
