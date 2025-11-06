@@ -307,9 +307,15 @@ export default function Checklist() {
       </main>
 
       <footer className="border-t border-border py-8 mt-16">
-        <div className="container max-w-4xl mx-auto px-4">
-          <p className="text-center text-sm text-muted-foreground">
+        <div className="container max-w-4xl mx-auto px-4 text-center">
+          <p className="text-sm text-muted-foreground">
             CODED Human Capital Development Company © 2025
+          </p>
+          <p className="text-xs text-muted-foreground mt-2">
+            Vibe Coded by Yousif Aldousari
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Supervised by Moudhi Albannai
           </p>
         </div>
       </footer>
