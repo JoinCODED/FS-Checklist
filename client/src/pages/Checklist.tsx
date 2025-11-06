@@ -8,12 +8,17 @@ import { WelcomeMessage } from "@/components/WelcomeMessage";
 import { ConclusionMessage } from "@/components/ConclusionMessage";
 import { LoadingState } from "@/components/LoadingState";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Moon, Sun, LogOut } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
+import { useAuth } from "@/hooks/useAuth";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@/hooks/use-window-size";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import { isUnauthorizedError } from "@/lib/authUtils";
 
 const STORAGE_KEY = "coded-checklist-progress";
 
@@ -21,6 +26,8 @@ export default function Checklist() {
   const [showConfetti, setShowConfetti] = useState(false);
   const { theme, setTheme } = useTheme();
   const { width, height } = useWindowSize();
+  const { user } = useAuth();
+  const { toast } = useToast();
 
   const { data: serverProgress, isLoading } = useQuery<Record<string, boolean>>({
     queryKey: ["/api/progress"],
@@ -65,7 +72,18 @@ export default function Checklist() {
       
       return { previousProgress };
     },
-    onError: (_err, _variables, context) => {
+    onError: (error, _variables, context) => {
+      if (isUnauthorizedError(error as Error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/login";
+        }, 500);
+        return;
+      }
       if (context?.previousProgress) {
         queryClient.setQueryData(["/api/progress"], context.previousProgress);
       }
@@ -123,18 +141,47 @@ export default function Checklist() {
         <div className="container max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between gap-4">
             <CodedLogo />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              data-testid="button-theme-toggle"
-            >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                data-testid="button-theme-toggle"
+              >
+                {theme === "dark" ? (
+                  <Sun className="h-5 w-5" />
+                ) : (
+                  <Moon className="h-5 w-5" />
+                )}
+              </Button>
+              
+              {user && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="gap-2" data-testid="button-user-menu">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={user.profileImageUrl || undefined} />
+                        <AvatarFallback>
+                          {user.firstName?.[0] || user.email?.[0] || "U"}
+                        </AvatarFallback>
+                      </Avatar>
+                      <span className="hidden md:inline text-sm">
+                        {user.firstName || user.email || "User"}
+                      </span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem
+                      onClick={() => window.location.href = "/api/logout"}
+                      data-testid="button-logout"
+                    >
+                      <LogOut className="mr-2 h-4 w-4" />
+                      Log out
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               )}
-            </Button>
+            </div>
           </div>
         </div>
       </header>

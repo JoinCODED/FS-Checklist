@@ -1,12 +1,17 @@
 import {
   type ChecklistProgress,
   type InsertChecklistProgress,
+  type User,
+  type UpsertUser,
   checklistProgress,
+  users,
 } from "@shared/schema";
 import { db } from "../db";
 import { eq, and } from "drizzle-orm";
 
 export interface IStorage {
+  getUser(id: string): Promise<User | undefined>;
+  upsertUser(user: UpsertUser): Promise<User>;
   getProgressByUserId(userId: string): Promise<ChecklistProgress[]>;
   updateProgress(
     userId: string,
@@ -17,6 +22,26 @@ export interface IStorage {
 }
 
 export class DbStorage implements IStorage {
+  async getUser(id: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(userData)
+      .onConflictDoUpdate({
+        target: users.id,
+        set: {
+          ...userData,
+          updatedAt: new Date(),
+        },
+      })
+      .returning();
+    return user;
+  }
+
   async getProgressByUserId(userId: string): Promise<ChecklistProgress[]> {
     return await db
       .select()
