@@ -13,7 +13,7 @@ export function ProgressBar({ current, total }: ProgressBarProps) {
       <div className="flex items-center justify-between gap-4">
         <div className="flex-1">
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-bold text-primary" data-testid="text-percentage">
+            <span className="text-3xl font-bold text-[#14243F] dark:text-white" data-testid="text-percentage">
               {percentage}%
             </span>
             <span className="text-sm font-medium text-muted-foreground">
