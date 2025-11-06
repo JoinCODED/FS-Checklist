@@ -10,9 +10,10 @@ import { LoadingState } from "@/components/LoadingState";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Moon, Sun, LogOut } from "lucide-react";
+import { Moon, Sun, LogOut, Users } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuth } from "@/hooks/useAuth";
+import { Link } from "wouter";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@/hooks/use-window-size";
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -29,9 +30,18 @@ export default function Checklist() {
   const { user } = useAuth();
   const { toast } = useToast();
 
-  const { data: serverProgress, isLoading } = useQuery<Record<string, boolean>>({
+  const { data: serverProgress, isLoading, error: progressError } = useQuery<Record<string, boolean>>({
     queryKey: ["/api/progress"],
-    initialData: () => {
+  });
+
+  const completedTasks = new Set<string>(
+    Object.entries(serverProgress || {})
+      .filter(([_, completed]) => completed)
+      .map(([taskId]) => taskId)
+  );
+
+  useEffect(() => {
+    if (progressError) {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         try {
@@ -40,14 +50,13 @@ export default function Checklist() {
           parsed.forEach((taskId: string) => {
             result[taskId] = true;
           });
-          return result;
+          queryClient.setQueryData(["/api/progress"], result);
         } catch (e) {
           console.error("Failed to parse stored progress", e);
         }
       }
-      return {};
-    },
-  });
+    }
+  }, [progressError]);
 
   const updateProgressMutation = useMutation({
     mutationFn: async ({ taskId, completed }: { taskId: string; completed: boolean }) => {
@@ -92,12 +101,6 @@ export default function Checklist() {
       queryClient.invalidateQueries({ queryKey: ["/api/progress"] });
     },
   });
-
-  const completedTasks = new Set<string>(
-    Object.entries(serverProgress || {})
-      .filter(([_, completed]) => completed)
-      .map(([taskId]) => taskId)
-  );
 
   useEffect(() => {
     localStorage.setItem(
@@ -171,6 +174,14 @@ export default function Checklist() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
+                    {user.isAdmin && (
+                      <Link href="/admin">
+                        <DropdownMenuItem data-testid="link-admin">
+                          <Users className="mr-2 h-4 w-4" />
+                          Admin Dashboard
+                        </DropdownMenuItem>
+                      </Link>
+                    )}
                     <DropdownMenuItem
                       onClick={() => window.location.href = "/api/logout"}
                       data-testid="button-logout"

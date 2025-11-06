@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/hooks/use-theme";
 import { useAuth } from "@/hooks/useAuth";
 import Checklist from "@/pages/Checklist";
 import Landing from "@/pages/Landing";
+import Admin from "@/pages/Admin";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -19,6 +20,7 @@ function Router() {
       ) : (
         <>
           <Route path="/" component={Checklist} />
+          <Route path="/admin" component={Admin} />
         </>
       )}
       <Route component={NotFound} />

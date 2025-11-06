@@ -12,6 +12,7 @@ import { eq, and } from "drizzle-orm";
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   upsertUser(user: UpsertUser): Promise<User>;
+  getAllUsers(): Promise<User[]>;
   getProgressByUserId(userId: string): Promise<ChecklistProgress[]>;
   updateProgress(
     userId: string,
@@ -19,6 +20,7 @@ export interface IStorage {
     completed: boolean
   ): Promise<ChecklistProgress>;
   getAllProgress(userId: string): Promise<Map<string, boolean>>;
+  getAllUsersProgress(): Promise<ChecklistProgress[]>;
 }
 
 export class DbStorage implements IStorage {
@@ -40,6 +42,14 @@ export class DbStorage implements IStorage {
       })
       .returning();
     return user;
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    return await db.select().from(users);
+  }
+
+  async getAllUsersProgress(): Promise<ChecklistProgress[]> {
+    return await db.select().from(checklistProgress);
   }
 
   async getProgressByUserId(userId: string): Promise<ChecklistProgress[]> {
