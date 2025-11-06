@@ -17,6 +17,17 @@ This application helps new students complete their onboarding tasks before start
   - Helpful instructions and tips
   - Subtasks with WiFi credentials and other details
   - Bonus and important task badges
+- **Important Tasks Reminder**: Dismissible notification card that:
+  - Lists all incomplete important tasks
+  - Provides click-to-scroll navigation to each task
+  - Auto-hides when all important tasks are completed
+  - Helps students focus on critical onboarding steps
+- **PDF Export**: Download printable checklist with:
+  - Student information and current date
+  - Overall progress percentage
+  - All sections and tasks with completion status
+  - Important task indicators
+  - Professional CODED branding
 - **Quick Reference Cards**: Easy access to WiFi credentials and CODED contact number
 - **Persistence**: Progress saved to PostgreSQL database with localStorage fallback
 - **User Authentication**: Replit Auth (OpenID Connect) for secure login with session management
@@ -50,6 +61,7 @@ This application helps new students complete their onboarding tasks before start
 - **TanStack Query** for data fetching and caching
 - **Wouter** for routing
 - **React Confetti** for celebration effects
+- **jsPDF** for PDF generation
 
 ### Backend
 - **Express.js** server
@@ -66,20 +78,22 @@ This application helps new students complete their onboarding tasks before start
 ├── client/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── ChecklistItem.tsx      # Individual task checkbox
-│   │   │   ├── ChecklistSection.tsx   # Collapsible section container
-│   │   │   ├── CodedLogo.tsx          # CODED logo component
-│   │   │   ├── ConclusionMessage.tsx  # Final welcome message
-│   │   │   ├── LoadingState.tsx       # Skeleton loading screen
-│   │   │   ├── ProgressBar.tsx        # Progress visualization
-│   │   │   ├── QuickReference.tsx     # WiFi/contact info card
-│   │   │   └── WelcomeMessage.tsx     # Encouragement message
+│   │   │   ├── ChecklistItem.tsx           # Individual task checkbox
+│   │   │   ├── ChecklistSection.tsx        # Collapsible section container
+│   │   │   ├── CodedLogo.tsx               # CODED logo component
+│   │   │   ├── ConclusionMessage.tsx       # Final welcome message
+│   │   │   ├── ImportantTasksReminder.tsx  # Important tasks notification
+│   │   │   ├── LoadingState.tsx            # Skeleton loading screen
+│   │   │   ├── ProgressBar.tsx             # Progress visualization
+│   │   │   ├── QuickReference.tsx          # WiFi/contact info card
+│   │   │   └── WelcomeMessage.tsx          # Encouragement message
 │   │   ├── hooks/
 │   │   │   ├── use-theme.tsx          # Theme provider and hook
 │   │   │   ├── use-window-size.tsx    # Window dimensions for confetti
 │   │   │   └── useAuth.ts             # Authentication hook
 │   │   ├── lib/
-│   │   │   └── authUtils.ts           # Auth utility functions
+│   │   │   ├── authUtils.ts           # Auth utility functions
+│   │   │   ├── pdfExport.ts           # PDF generation utility
 │   │   ├── pages/
 │   │   │   ├── Checklist.tsx          # Main checklist page
 │   │   │   ├── Landing.tsx            # Landing page for unauthenticated users
@@ -156,6 +170,28 @@ This application helps new students complete their onboarding tasks before start
 
 ## Recent Changes
 
+**2025-11-06**: Important tasks reminder and PDF export features
+- Implemented Important Tasks Reminder notification system:
+  - Displays dismissible card with all incomplete important tasks
+  - Click-to-scroll functionality for quick navigation to tasks
+  - Auto-hides when all important tasks are completed
+  - Includes data-task-id attributes on checklist items for scroll targets
+  - Enhanced UX with focus management and accessibility
+- Added PDF Export functionality:
+  - Generates branded PDF with student info, date, and progress
+  - Lists all sections and tasks with completion indicators
+  - Marks important tasks with [IMPORTANT] label
+  - Handles long text with pagination
+  - Provides fallback display for users with null names
+  - Download button with success toast notification
+- Updated to official CODED brand colors:
+  - Navy Blue #14243F (Primary/Brand)
+  - Secondary Blue #004AA3 (Secondary)
+  - Light Gray #D2D2D2 (Tertiary)
+  - WCAG AA contrast compliance verified
+- Fixed progress calculation with useMemo to prevent re-render issues
+- All features tested and architect-approved with TypeScript type improvements
+
 **2025-11-06**: Multi-user authentication and admin dashboard
 - Integrated Replit Auth (OpenID Connect) for secure user authentication
 - Added PostgreSQL-backed session management with Express Session
@@ -172,7 +208,7 @@ This application helps new students complete their onboarding tasks before start
 
 **2025-11-06**: Initial implementation with database persistence
 - Created complete checklist system with all sections and tasks (19 total)
-- Implemented CODED brand colors and typography (Blue primary, Green accent)
+- Implemented CODED brand colors and typography
 - Added dark/light theme support with smooth transitions
 - Integrated PostgreSQL database via Neon with WebSocket support
 - Implemented TanStack Query with optimistic updates for instant UI feedback
