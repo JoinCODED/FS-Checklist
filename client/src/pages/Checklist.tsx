@@ -52,7 +52,15 @@ export default function Checklist() {
       const previousProgress = queryClient.getQueryData<Record<string, boolean>>(["/api/progress"]);
       
       queryClient.setQueryData<Record<string, boolean>>(["/api/progress"], (old = {}) => {
-        return { ...old, [taskId]: completed };
+        const updated = { ...old, [taskId]: completed };
+        
+        const newCompletedCount = Object.values(updated).filter(Boolean).length;
+        if (completed && newCompletedCount === totalTasks) {
+          setShowConfetti(true);
+          setTimeout(() => setShowConfetti(false), 5000);
+        }
+        
+        return updated;
       });
       
       return { previousProgress };
@@ -88,17 +96,8 @@ export default function Checklist() {
   const completedCount = completedTasks.size;
 
   const handleToggleTask = async (taskId: string, completed: boolean) => {
-    const newCompletedCount = completed 
-      ? completedCount + 1 
-      : completedCount - 1;
-
     try {
       await updateProgressMutation.mutateAsync({ taskId, completed });
-      
-      if (completed && newCompletedCount === totalTasks) {
-        setShowConfetti(true);
-        setTimeout(() => setShowConfetti(false), 5000);
-      }
     } catch (error) {
       console.error("Failed to update progress", error);
     }

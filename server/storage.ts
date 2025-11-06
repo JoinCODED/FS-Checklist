@@ -1,8 +1,10 @@
 import {
   type ChecklistProgress,
   type InsertChecklistProgress,
+  checklistProgress,
 } from "@shared/schema";
-import { randomUUID } from "crypto";
+import { db } from "../db";
+import { eq, and } from "drizzle-orm";
 
 export interface IStorage {
   getProgressByUserId(userId: string): Promise<ChecklistProgress[]>;
@@ -14,17 +16,12 @@ export interface IStorage {
   getAllProgress(userId: string): Promise<Map<string, boolean>>;
 }
 
-export class MemStorage implements IStorage {
-  private progress: Map<string, ChecklistProgress>;
-
-  constructor() {
-    this.progress = new Map();
-  }
-
+export class DbStorage implements IStorage {
   async getProgressByUserId(userId: string): Promise<ChecklistProgress[]> {
-    return Array.from(this.progress.values()).filter(
-      (p) => p.userId === userId
-    );
+    return await db
+      .select()
+      .from(checklistProgress)
+      .where(eq(checklistProgress.userId, userId));
   }
 
   async updateProgress(
@@ -32,23 +29,36 @@ export class MemStorage implements IStorage {
     taskId: string,
     completed: boolean
   ): Promise<ChecklistProgress> {
-    const key = `${userId}-${taskId}`;
-    const existing = this.progress.get(key);
+    const existing = await db
+      .select()
+      .from(checklistProgress)
+      .where(
+        and(
+          eq(checklistProgress.userId, userId),
+          eq(checklistProgress.taskId, taskId)
+        )
+      )
+      .limit(1);
 
-    if (existing) {
-      const updated = { ...existing, completed };
-      this.progress.set(key, updated);
-      return updated;
+    if (existing.length > 0) {
+      const updated = await db
+        .update(checklistProgress)
+        .set({ completed })
+        .where(
+          and(
+            eq(checklistProgress.userId, userId),
+            eq(checklistProgress.taskId, taskId)
+          )
+        )
+        .returning();
+      return updated[0];
     }
 
-    const newProgress: ChecklistProgress = {
-      id: randomUUID(),
-      userId,
-      taskId,
-      completed,
-    };
-    this.progress.set(key, newProgress);
-    return newProgress;
+    const inserted = await db
+      .insert(checklistProgress)
+      .values({ userId, taskId, completed })
+      .returning();
+    return inserted[0];
   }
 
   async getAllProgress(userId: string): Promise<Map<string, boolean>> {
@@ -61,4 +71,4 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DbStorage();

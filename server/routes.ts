@@ -13,6 +13,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       progress.forEach((completed, taskId) => {
         result[taskId] = completed;
       });
+      console.log(`[GET /api/progress] Returning ${Object.keys(result).length} tasks for user ${DEFAULT_USER_ID}`);
       res.json(result);
     } catch (error) {
       console.error("Error fetching progress:", error);
@@ -28,11 +29,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       const { taskId, completed } = schema.parse(req.body);
+      console.log(`[POST /api/progress] Updating task ${taskId} to ${completed} for user ${DEFAULT_USER_ID}`);
       const progress = await storage.updateProgress(
         DEFAULT_USER_ID,
         taskId,
         completed
       );
+      console.log(`[POST /api/progress] Successfully updated. Current progress count:`, await storage.getAllProgress(DEFAULT_USER_ID));
       res.json(progress);
     } catch (error) {
       if (error instanceof z.ZodError) {
