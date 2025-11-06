@@ -9,31 +9,30 @@ export function CodedLogo({ className = "" }: { className?: string }) {
         xmlns="http://www.w3.org/2000/svg"
         className="flex-shrink-0"
       >
+        {/* Left bracket [ */}
         <path
-          d="M14 10 L10 10 L10 30 L14 30"
+          d="M13 8 L8 8 L8 32 L13 32"
           stroke="white"
-          strokeWidth="3"
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
+        {/* Right bracket ] */}
         <path
-          d="M26 10 L30 10 L30 30 L26 30"
+          d="M27 8 L32 8 L32 32 L27 32"
           stroke="white"
-          strokeWidth="3"
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <text
-          x="20"
-          y="26"
-          fill="white"
-          fontSize="20"
-          fontWeight="600"
-          textAnchor="middle"
-          fontFamily="system-ui, -apple-system, sans-serif"
-        >
-          C
-        </text>
+        {/* Letter C - arc shape with opening on right */}
+        <path
+          d="M25 15 A7 7 0 0 0 13 20 A7 7 0 0 0 25 25"
+          fill="none"
+          stroke="white"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+        />
       </svg>
       <span className="text-2xl font-bold tracking-tight">
         <span className="text-foreground">CODED</span>
