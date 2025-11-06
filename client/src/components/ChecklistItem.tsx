@@ -29,6 +29,7 @@ export function ChecklistItem({ task, completed, onToggle }: ChecklistItemProps)
         "hover-elevate"
       )}
       data-testid={`task-${task.id}`}
+      data-task-id={task.id}
     >
       <div className="flex items-start gap-3">
         <Checkbox
