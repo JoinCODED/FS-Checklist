@@ -179,8 +179,7 @@ export const checklistData: ChecklistSection[] = [
       },
       {
         id: "networking",
-        title: "Get to know the instructors and your colleagues",
-        description: "Ask them about their work, and tell them about your goals",
+        title: "Meet your instructors and mentors, discuss with them about the bootcamp, their work, and your goals",
       },
       {
         id: "goodie-bag",
