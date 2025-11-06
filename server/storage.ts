@@ -1,37 +1,63 @@
-import { type User, type InsertUser } from "@shared/schema";
+import {
+  type ChecklistProgress,
+  type InsertChecklistProgress,
+} from "@shared/schema";
 import { randomUUID } from "crypto";
 
-// modify the interface with any CRUD methods
-// you might need
-
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getProgressByUserId(userId: string): Promise<ChecklistProgress[]>;
+  updateProgress(
+    userId: string,
+    taskId: string,
+    completed: boolean
+  ): Promise<ChecklistProgress>;
+  getAllProgress(userId: string): Promise<Map<string, boolean>>;
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<string, User>;
+  private progress: Map<string, ChecklistProgress>;
 
   constructor() {
-    this.users = new Map();
+    this.progress = new Map();
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
-  }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
+  async getProgressByUserId(userId: string): Promise<ChecklistProgress[]> {
+    return Array.from(this.progress.values()).filter(
+      (p) => p.userId === userId
     );
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async updateProgress(
+    userId: string,
+    taskId: string,
+    completed: boolean
+  ): Promise<ChecklistProgress> {
+    const key = `${userId}-${taskId}`;
+    const existing = this.progress.get(key);
+
+    if (existing) {
+      const updated = { ...existing, completed };
+      this.progress.set(key, updated);
+      return updated;
+    }
+
+    const newProgress: ChecklistProgress = {
+      id: randomUUID(),
+      userId,
+      taskId,
+      completed,
+    };
+    this.progress.set(key, newProgress);
+    return newProgress;
+  }
+
+  async getAllProgress(userId: string): Promise<Map<string, boolean>> {
+    const userProgress = await this.getProgressByUserId(userId);
+    const result = new Map<string, boolean>();
+    userProgress.forEach((p) => {
+      result.set(p.taskId, p.completed);
+    });
+    return result;
   }
 }
 
