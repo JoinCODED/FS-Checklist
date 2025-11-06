@@ -9,17 +9,17 @@ export function CodedLogo({ className = "" }: { className?: string }) {
         xmlns="http://www.w3.org/2000/svg"
         className="flex-shrink-0"
       >
-        <rect width="40" height="40" rx="8" className="fill-primary" />
+        <rect width="40" height="40" rx="8" className="fill-[#14243F] dark:fill-white" />
         <path
           d="M15 12L10 20L15 28"
-          stroke="white"
+          className="stroke-white dark:stroke-[#14243F]"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M25 12L30 20L25 28"
-          stroke="white"
+          className="stroke-white dark:stroke-[#14243F]"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -29,7 +29,7 @@ export function CodedLogo({ className = "" }: { className?: string }) {
           y1="10"
           x2="18"
           y2="30"
-          stroke="white"
+          className="stroke-white dark:stroke-[#14243F]"
           strokeWidth="2.5"
           strokeLinecap="round"
         />
