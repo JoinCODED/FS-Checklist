@@ -18,7 +18,9 @@ This application helps new students complete their onboarding tasks before start
   - Subtasks with WiFi credentials and other details
   - Bonus and important task badges
 - **Quick Reference Cards**: Easy access to WiFi credentials and CODED contact number
-- **Persistence**: Progress saved to backend API with localStorage fallback
+- **Persistence**: Progress saved to PostgreSQL database with localStorage fallback
+- **User Authentication**: Replit Auth (OpenID Connect) for secure login with session management
+- **Admin Dashboard**: Comprehensive analytics dashboard for tracking student progress
 
 ### User Experience
 - **Dark/Light Theme**: Full theme support with smooth transitions
@@ -27,6 +29,8 @@ This application helps new students complete their onboarding tasks before start
 - **Collapsible Sections**: Clean organization with expandable/collapsible section cards
 - **Loading States**: Beautiful skeleton screens while data loads
 - **Error Handling**: Graceful fallback to localStorage if API fails
+- **Multi-user Support**: Each student has their own account and progress tracking
+- **Secure Access**: Protected routes with automatic session management
 
 ### Design
 - **CODED Branding**: Custom color palette using CODED blue (primary) and green (accent)
@@ -46,7 +50,10 @@ This application helps new students complete their onboarding tasks before start
 
 ### Backend
 - **Express.js** server
-- **In-memory storage** for development
+- **PostgreSQL** database (Neon) with WebSocket support
+- **Drizzle ORM** for type-safe database queries
+- **Replit Auth** (OpenID Connect) for authentication
+- **Express Session** with PostgreSQL session store
 - **Zod** for validation
 - **RESTful API** endpoints
 
@@ -66,68 +73,74 @@ This application helps new students complete their onboarding tasks before start
 │   │   │   └── WelcomeMessage.tsx     # Encouragement message
 │   │   ├── hooks/
 │   │   │   ├── use-theme.tsx          # Theme provider and hook
-│   │   │   └── use-window-size.tsx    # Window dimensions for confetti
+│   │   │   ├── use-window-size.tsx    # Window dimensions for confetti
+│   │   │   └── useAuth.ts             # Authentication hook
+│   │   ├── lib/
+│   │   │   └── authUtils.ts           # Auth utility functions
 │   │   ├── pages/
-│   │   │   └── Checklist.tsx          # Main checklist page
+│   │   │   ├── Checklist.tsx          # Main checklist page
+│   │   │   ├── Landing.tsx            # Landing page for unauthenticated users
+│   │   │   └── Admin.tsx              # Admin dashboard
 │   │   └── index.css                  # Theme colors and utilities
 ├── server/
 │   ├── routes.ts                      # API endpoints
-│   └── storage.ts                     # In-memory storage interface
+│   ├── storage.ts                     # Database storage interface
+│   └── replitAuth.ts                  # Authentication middleware
 └── shared/
     └── schema.ts                      # Shared types and checklist data
 ```
 
 ## API Endpoints
 
-### GET /api/progress
-Returns progress for the default user as a Record<string, boolean>
+### Authentication
+- **GET /api/login** - Initiates Replit Auth login flow
+- **GET /api/login/callback** - Handles OAuth callback, creates/updates user
+- **GET /api/logout** - Destroys session and redirects to landing
+- **GET /api/user** - Returns current authenticated user or null
 
-**Response:**
-```json
-{
-  "wifi": true,
-  "chrome": true,
-  "discord-join": false
-}
-```
+### Progress Tracking
+- **GET /api/progress** - Returns progress for authenticated user as Record<string, boolean>
+- **POST /api/progress** - Updates progress for a specific task
+  - Request: `{ taskId: string, completed: boolean }`
+  - Response: `{ id, userId, taskId, completed }`
 
-### POST /api/progress
-Updates progress for a specific task
-
-**Request:**
-```json
-{
-  "taskId": "wifi",
-  "completed": true
-}
-```
-
-**Response:**
-```json
-{
-  "id": "uuid",
-  "userId": "default-user",
-  "taskId": "wifi",
-  "completed": true
-}
-```
+### Admin (Protected)
+- **GET /api/admin/stats** - Returns comprehensive statistics
+  - Requires: isAdmin = true
+  - Response: `{ totalUsers, totalTasks, avgCompletionRate, userStats[], taskStats[] }`
 
 ## Data Model
 
+### Users
+- `id`: Unique identifier (primary key, matches Replit Auth sub)
+- `email`: User email
+- `firstName`: User's first name
+- `lastName`: User's last name
+- `profileImageUrl`: Profile picture URL
+- `isAdmin`: Boolean flag for admin access (default: false)
+- `createdAt`: Account creation timestamp
+- `updatedAt`: Last update timestamp
+
+### Sessions
+- `sid`: Session ID (primary key)
+- `sess`: Session data (JSON)
+- `expire`: Session expiration timestamp
+- PostgreSQL-backed session store for Express Session
+
 ### ChecklistProgress
 - `id`: Unique identifier
-- `userId`: User identifier (currently using "default-user")
+- `userId`: Foreign key to users table
 - `taskId`: Task identifier
 - `completed`: Boolean completion status
 
-### ChecklistSection
+### ChecklistSection (Frontend Schema)
 - `id`: Section identifier
 - `title`: Section title
 - `description`: Optional description
 - `collapsible`: Whether section can be collapsed
 - `tasks`: Array of ChecklistTask
 
-### ChecklistTask
+### ChecklistTask (Frontend Schema)
 - `id`: Task identifier
 - `title`: Task title
 - `description`: Optional description
@@ -140,7 +153,21 @@ Updates progress for a specific task
 
 ## Recent Changes
 
-**2025-11-06**: Complete implementation with database persistence
+**2025-11-06**: Multi-user authentication and admin dashboard
+- Integrated Replit Auth (OpenID Connect) for secure user authentication
+- Added PostgreSQL-backed session management with Express Session
+- Created Landing page for unauthenticated users with brand messaging
+- Implemented useAuth hook and protected routes pattern
+- Built comprehensive Admin Dashboard with analytics:
+  - Total students, tasks, and average completion statistics
+  - Per-user progress tracking with completion percentages
+  - Task-level analytics grouped by section
+- Added isAdmin middleware for secure admin-only endpoints
+- Removed unique constraint on email to support testing scenarios
+- Fixed localStorage caching bug preventing server data sync
+- All end-to-end tests passing: authentication flow, admin dashboard, progress tracking
+
+**2025-11-06**: Initial implementation with database persistence
 - Created complete checklist system with all sections and tasks (19 total)
 - Implemented CODED brand colors and typography (Blue primary, Green accent)
 - Added dark/light theme support with smooth transitions
@@ -150,7 +177,6 @@ Updates progress for a specific task
 - Removed all emoji usage per design guidelines
 - Fixed confetti celebration trigger to work correctly at 100% completion
 - Configured Drizzle ORM with proper WebSocket constructor for Neon
-- All end-to-end tests passing: progress tracking, persistence, confetti, theme toggle
 
 ## User Preferences
 
