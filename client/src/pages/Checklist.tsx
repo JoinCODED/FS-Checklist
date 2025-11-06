@@ -11,7 +11,7 @@ import { ImportantTasksReminder } from "@/components/ImportantTasksReminder";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { LogOut, Users, Download } from "lucide-react";
+import { LogOut, Users } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Link } from "wouter";
 import Confetti from "react-confetti";
@@ -20,7 +20,6 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError } from "@/lib/authUtils";
-import { exportChecklistToPDF } from "@/lib/pdfExport";
 
 const STORAGE_KEY = "coded-checklist-progress";
 
@@ -153,14 +152,6 @@ export default function Checklist() {
     }
   };
 
-  const handleExportPDF = () => {
-    exportChecklistToPDF(completedTasks, user || null);
-    toast({
-      title: "PDF Downloaded",
-      description: "Your checklist has been exported successfully.",
-    });
-  };
-
   if (isLoading) {
     return <LoadingState />;
   }
@@ -233,19 +224,6 @@ export default function Checklist() {
           </div>
 
           <ProgressBar current={completedCount} total={totalTasks} />
-          
-          <div className="flex justify-end">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleExportPDF}
-              className="gap-2"
-              data-testid="button-export-pdf"
-            >
-              <Download className="h-4 w-4" />
-              Export to PDF
-            </Button>
-          </div>
         </div>
 
         <div className="space-y-8">

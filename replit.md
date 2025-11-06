@@ -22,12 +22,6 @@ This application helps new students complete their onboarding tasks before start
   - Provides click-to-scroll navigation to each task
   - Auto-hides when all important tasks are completed (cannot be manually dismissed)
   - Helps students focus on critical onboarding steps
-- **PDF Export**: Download printable checklist with:
-  - Student information and current date
-  - Overall progress percentage
-  - All sections and tasks with completion status
-  - Important task indicators
-  - Professional CODED branding
 - **Quick Reference Cards**: Easy access to WiFi credentials and CODED contact number
 - **Persistence**: Progress saved to PostgreSQL database with localStorage fallback
 - **User Authentication**: Replit Auth (OpenID Connect) for secure login with session management
@@ -170,7 +164,7 @@ This application helps new students complete their onboarding tasks before start
 
 ## Recent Changes
 
-**2025-11-06**: Dark mode only - Removed theme toggle
+**2025-11-06**: Dark mode only - Removed theme toggle and PDF export
 - Transitioned application to **dark mode only**:
   - Removed theme toggle buttons from all pages (Checklist, Admin)
   - Updated ThemeProvider to force dark mode permanently
@@ -179,6 +173,13 @@ This application helps new students complete their onboarding tasks before start
 - Updated Important Tasks Reminder:
   - Removed dismiss button - card only auto-hides when tasks are completed
   - Ensures students cannot accidentally dismiss critical tasks
+- Updated Progress Bar:
+  - Removed rounded corners for square/sharp appearance
+  - Applied gradient coloring using CODED Secondary Blue (#004AA3)
+  - Gradient flows from lighter (#0056c9) through #004AA3 to darker (#003d8a)
+- Removed Export to PDF feature:
+  - Removed PDF export button from checklist page
+  - Streamlined UI for cleaner student experience
 - All changes tested and verified across Landing, Checklist pages
 
 **2025-11-06**: Theme-aware UI components matching CODED brand guidelines
