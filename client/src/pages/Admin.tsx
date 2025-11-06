@@ -7,8 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { CodedLogo } from "@/components/CodedLogo";
-import { Moon, Sun, ArrowLeft, Users, CheckCircle, TrendingUp } from "lucide-react";
-import { useTheme } from "@/hooks/use-theme";
+import { ArrowLeft, Users, CheckCircle, TrendingUp } from "lucide-react";
 import { Link } from "wouter";
 
 interface UserStat {
@@ -41,7 +40,6 @@ interface AdminStats {
 
 export default function Admin() {
   const { user, isLoading: authLoading, isAuthenticated } = useAuth();
-  const { theme, setTheme } = useTheme();
   const { toast } = useToast();
 
   const { data: stats, isLoading: statsLoading, error } = useQuery<AdminStats>({
@@ -141,14 +139,6 @@ export default function Admin() {
                   Back to Checklist
                 </Button>
               </Link>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                data-testid="button-theme-toggle"
-              >
-                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
             </div>
           </div>
         </div>

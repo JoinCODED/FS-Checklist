@@ -11,8 +11,7 @@ import { ImportantTasksReminder } from "@/components/ImportantTasksReminder";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Moon, Sun, LogOut, Users, Download } from "lucide-react";
-import { useTheme } from "@/hooks/use-theme";
+import { LogOut, Users, Download } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Link } from "wouter";
 import Confetti from "react-confetti";
@@ -27,7 +26,6 @@ const STORAGE_KEY = "coded-checklist-progress";
 
 export default function Checklist() {
   const [showConfetti, setShowConfetti] = useState(false);
-  const { theme, setTheme } = useTheme();
   const { width, height } = useWindowSize();
   const { user } = useAuth();
   const { toast } = useToast();
@@ -184,19 +182,6 @@ export default function Checklist() {
           <div className="flex items-center justify-between gap-4">
             <CodedLogo />
             <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                data-testid="button-theme-toggle"
-              >
-                {theme === "dark" ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
-              </Button>
-              
               {user && (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
