@@ -277,23 +277,26 @@ export default function Checklist() {
                     </p>
                   </div>
                   <WelcomeMessage />
-                  {incompleteImportantTasks.length > 0 && (
-                    <ImportantTasksReminder
-                      incompleteTasks={incompleteImportantTasks}
-                      onTaskClick={handleScrollToTask}
-                    />
-                  )}
                 </div>
               );
             }
 
             return (
-              <ChecklistSection
-                key={section.id}
-                section={section}
-                completedTasks={completedTasks}
-                onToggleTask={handleToggleTask}
-              />
+              <div key={section.id}>
+                <ChecklistSection
+                  section={section}
+                  completedTasks={completedTasks}
+                  onToggleTask={handleToggleTask}
+                />
+                {section.id === "essentials" && incompleteImportantTasks.length > 0 && (
+                  <div className="mt-8">
+                    <ImportantTasksReminder
+                      incompleteTasks={incompleteImportantTasks}
+                      onTaskClick={handleScrollToTask}
+                    />
+                  </div>
+                )}
+              </div>
             );
           })}
 

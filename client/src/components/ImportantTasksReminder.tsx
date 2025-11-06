@@ -44,13 +44,27 @@ export function ImportantTasksReminder({ incompleteTasks, onTaskClick }: Importa
             {incompleteTasks.map(({ task, sectionTitle }) => (
               <li key={task.id} className="flex items-start gap-2">
                 <span className="text-destructive mt-0.5">•</span>
-                <button
-                  onClick={() => onTaskClick(task.id)}
-                  className="text-left hover:underline text-sm text-foreground font-medium"
-                  data-testid={`link-important-task-${task.id}`}
-                >
-                  {task.title} <span className="text-muted-foreground">({sectionTitle})</span>
-                </button>
+                <div className="flex flex-col gap-1">
+                  <button
+                    onClick={() => onTaskClick(task.id)}
+                    className="text-left hover:underline text-sm text-foreground font-medium"
+                    data-testid={`link-important-task-${task.id}`}
+                  >
+                    {task.title} <span className="text-muted-foreground">({sectionTitle})</span>
+                  </button>
+                  {task.id === "contract" && (
+                    <a
+                      href="https://mail.google.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-primary hover:underline flex items-center gap-1"
+                      data-testid="link-gmail-contract"
+                    >
+                      Check your Gmail
+                      <span className="text-xs">→</span>
+                    </a>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
