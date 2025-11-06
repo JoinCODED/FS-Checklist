@@ -17,10 +17,10 @@ This application helps new students complete their onboarding tasks before start
   - Helpful instructions and tips
   - Subtasks with WiFi credentials and other details
   - Bonus and important task badges
-- **Important Tasks Reminder**: Dismissible notification card that:
+- **Important Tasks Reminder**: Auto-hiding notification card that:
   - Lists all incomplete important tasks
   - Provides click-to-scroll navigation to each task
-  - Auto-hides when all important tasks are completed
+  - Auto-hides when all important tasks are completed (cannot be manually dismissed)
   - Helps students focus on critical onboarding steps
 - **PDF Export**: Download printable checklist with:
   - Student information and current date
@@ -34,7 +34,7 @@ This application helps new students complete their onboarding tasks before start
 - **Admin Dashboard**: Comprehensive analytics dashboard for tracking student progress
 
 ### User Experience
-- **Dark/Light Theme**: Full theme support with smooth transitions
+- **Dark Mode**: Clean, modern dark theme throughout the application
 - **Confetti Celebration**: Visual celebration when 100% completion is reached
 - **Mobile Responsive**: Optimized for all device sizes
 - **Collapsible Sections**: Clean organization with expandable/collapsible section cards
@@ -170,19 +170,30 @@ This application helps new students complete their onboarding tasks before start
 
 ## Recent Changes
 
+**2025-11-06**: Dark mode only - Removed theme toggle
+- Transitioned application to **dark mode only**:
+  - Removed theme toggle buttons from all pages (Checklist, Admin)
+  - Updated ThemeProvider to force dark mode permanently
+  - Simplified CSS by removing light mode variables
+  - All UI elements now use consistent dark theme styling
+- Updated Important Tasks Reminder:
+  - Removed dismiss button - card only auto-hides when tasks are completed
+  - Ensures students cannot accidentally dismiss critical tasks
+- All changes tested and verified across Landing, Checklist pages
+
 **2025-11-06**: Theme-aware UI components matching CODED brand guidelines
-- Updated all UI components to use official CODED brand colors with theme adaptation:
-  - Checkboxes: Navy (#14243F) in light mode, white in dark mode
-  - Progress percentage text: Navy in light mode, white in dark mode
-  - CODED logo icon: Navy background with white [C] in light mode, white background with navy [C] in dark mode
+- Updated all UI components to use official CODED brand colors:
+  - Checkboxes: White borders and fills in dark mode
+  - Progress percentage text: White in dark mode
+  - CODED logo icon: White background with navy [C] design
 - Logo redesigned to match official CODED brand with square brackets [C] design
-- All components tested and verified in both light and dark themes
+- All components optimized for dark mode display
 
 **2025-11-06**: Important tasks reminder and PDF export features
 - Implemented Important Tasks Reminder notification system:
-  - Displays dismissible card with all incomplete important tasks
+  - Displays card with all incomplete important tasks
   - Click-to-scroll functionality for quick navigation to tasks
-  - Auto-hides when all important tasks are completed
+  - Auto-hides when all important tasks are completed (no manual dismiss)
   - Includes data-task-id attributes on checklist items for scroll targets
   - Enhanced UX with focus management and accessibility
 - Added PDF Export functionality:
@@ -217,7 +228,7 @@ This application helps new students complete their onboarding tasks before start
 **2025-11-06**: Initial implementation with database persistence
 - Created complete checklist system with all sections and tasks (19 total)
 - Implemented CODED brand colors and typography
-- Added dark/light theme support with smooth transitions
+- Implemented dark mode theme with professional styling
 - Integrated PostgreSQL database via Neon with WebSocket support
 - Implemented TanStack Query with optimistic updates for instant UI feedback
 - Added localStorage as offline fallback/initial data
@@ -233,6 +244,7 @@ This application helps new students complete their onboarding tasks before start
   - Secondary Blue #004AA3 (Secondary)
   - Light Gray #D2D2D2 (Tertiary)
 - Design Style: Modern, clean, student-friendly
+- Theme: Dark mode only
 - No emoji usage in UI
 
 ## Development
