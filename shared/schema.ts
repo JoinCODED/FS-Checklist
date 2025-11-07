@@ -96,9 +96,9 @@ export const checklistData: ChecklistSection[] = [
         link: "https://www.google.com/chrome",
       },
       {
-        id: "colab",
-        title: "Create a CoLab account",
-        link: "https://colab.research.google.com",
+        id: "cursor",
+        title: "Download Cursor on your laptop",
+        link: "https://cursor.com/download",
       },
       {
         id: "kaggle",
