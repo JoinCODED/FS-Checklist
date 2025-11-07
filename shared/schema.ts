@@ -159,7 +159,7 @@ export const checklistData: ChecklistSection[] = [
     tasks: [
       {
         id: "github-signup",
-        title: "Signup to https://github.com",
+        title: "Signup to github",
         link: "https://github.com",
         description: "Remember your GitHub username, we will ask you later for it",
       },
