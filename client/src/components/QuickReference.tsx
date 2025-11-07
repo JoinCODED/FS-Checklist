@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Wifi, Phone, Copy, Check } from "lucide-react";
+import { Wifi, Users, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -85,7 +85,7 @@ export function QuickReference({ className = "" }: QuickReferenceProps) {
           </div>
 
           <div className="flex items-start gap-3 p-3 rounded-md bg-muted/50">
-            <Phone className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
+            <Users className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
             <div className="flex-1 min-w-0 space-y-2">
               <p className="text-sm font-medium text-foreground">Reach out to the mentors for any concerns!</p>
               <div className="space-y-1">
