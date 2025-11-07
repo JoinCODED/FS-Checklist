@@ -164,6 +164,18 @@ This application helps new students complete their onboarding tasks before start
 
 ## Recent Changes
 
+**2025-11-07**: Quick Reference and Read at Home section updates
+- Updated Quick Reference card:
+  - Replaced CODED Education Number with mentor contact information
+  - Changed icon from Phone to Users icon for mentors section
+  - Lists three mentors: Dr.Ammar Alhaj Ali, Ahmad Alhazza, Yousif Aldousari
+  - Maintains white icon styling for consistency
+- Updated Read at Home section:
+  - Removed "Save CODED Education Number on your phone" task
+  - Section now contains 2 tasks (device requirements, evaluation metrics)
+- Updated total task count from 19 to 18 tasks
+- All changes tested and verified with end-to-end tests
+
 **2025-11-07**: Task updates and logo refinements
 - Updated checklist tasks:
   - Removed "Wait for your goodie bag!" task from Essentials section (reduced to 3 tasks)
@@ -243,7 +255,7 @@ This application helps new students complete their onboarding tasks before start
 - All end-to-end tests passing: authentication flow, admin dashboard, progress tracking
 
 **2025-11-06**: Initial implementation with database persistence
-- Created complete checklist system with all sections and tasks (19 total)
+- Created complete checklist system with all sections and tasks (18 total)
 - Implemented CODED brand colors and typography
 - Implemented dark mode theme with professional styling
 - Integrated PostgreSQL database via Neon with WebSocket support

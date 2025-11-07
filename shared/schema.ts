@@ -213,11 +213,6 @@ export const checklistData: ChecklistSection[] = [
         title: "Check how the instruction team will evaluate your performance",
         description: "Review the Data Science Trainee Evaluation Metrics",
       },
-      {
-        id: "save-number",
-        title: "Save CODED Education Number on your phone",
-        description: "55421902",
-      },
     ],
   },
 ];
