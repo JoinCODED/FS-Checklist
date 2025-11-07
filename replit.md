@@ -164,6 +164,22 @@ This application helps new students complete their onboarding tasks before start
 
 ## Recent Changes
 
+**2025-11-07**: Task updates and logo refinements
+- Updated checklist tasks:
+  - Removed "Wait for your goodie bag!" task from Essentials section (reduced to 3 tasks)
+  - Added Bonus badge to "Submit your picture" task in Essentials section
+  - Added WhatsApp contact task to "First things first" section:
+    - Title: "CODED Education Team WhatsApp"
+    - Phone number: 55421902 displayed as subtask
+    - Direct link to WhatsApp chat (https://wa.me/96555421902)
+- Updated CODED logo design:
+  - Minimalist [C] design with white square brackets and letter C
+  - Removed background fill for cleaner, transparent appearance
+  - Bold, rounded arc for the C using SVG path
+  - Perfect 20% spacing proportions between brackets and letter
+- Updated total task count from 18 to 19 tasks
+- All changes tested and verified with end-to-end tests
+
 **2025-11-06**: Dark mode only - Removed theme toggle and PDF export
 - Transitioned application to **dark mode only**:
   - Removed theme toggle buttons from all pages (Checklist, Admin)

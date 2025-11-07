@@ -116,6 +116,14 @@ export const checklistData: ChecklistSection[] = [
         title: "Setup your Google @coded account",
         description: "Sent by CODED admission in your email. Assistant mentor can help you in the process.",
       },
+      {
+        id: "whatsapp-contact",
+        title: "CODED Education Team WhatsApp",
+        link: "https://wa.me/96555421902",
+        subtasks: [
+          { id: "whatsapp-number", text: "55421902" },
+        ],
+      },
     ],
   },
   {
