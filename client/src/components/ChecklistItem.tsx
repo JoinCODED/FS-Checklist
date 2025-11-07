@@ -99,9 +99,9 @@ export function ChecklistItem({ task, completed, onToggle }: ChecklistItemProps)
                   className="flex items-start gap-2 text-sm text-muted-foreground"
                 >
                   <span className="text-white mt-0.5">•</span>
-                  <span className="flex-1 font-mono text-sm bg-muted px-2 py-1 rounded">
+                  <code className="flex-1 font-mono text-sm bg-background px-2 py-1 rounded">
                     {subtask.text}
-                  </span>
+                  </code>
                   {subtask.link && (
                     <Button
                       variant="ghost"
