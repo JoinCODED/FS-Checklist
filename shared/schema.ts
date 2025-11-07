@@ -186,6 +186,11 @@ export const checklistData: ChecklistSection[] = [
     collapsible: true,
     tasks: [
       {
+        id: "github-picture-form",
+        title: "Fill this form to submit your GitHub Account and Picture:",
+        link: "https://airtable.com/appGSMF2eEC2s4abA/pagxHeida0bCbwok3/form",
+      },
+      {
         id: "contract",
         title: "Read and sign the contract",
         description: "You should have received it on your registered email",
@@ -194,13 +199,6 @@ export const checklistData: ChecklistSection[] = [
       {
         id: "networking",
         title: "Meet your instructors and mentors, discuss with them about the bootcamp, their work, and your goals",
-      },
-      {
-        id: "photo-submit",
-        title: "Submit your picture",
-        link: "https://airtable.com/appGSMF2eEC2s4abA/paguOET0VHvKo4BJL/form",
-        description: "We will not use this picture in any media, and will only be for the team to know you faster",
-        isBonus: true,
       },
     ],
   },
