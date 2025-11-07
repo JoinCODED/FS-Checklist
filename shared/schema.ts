@@ -154,9 +154,15 @@ export const checklistData: ChecklistSection[] = [
   },
   {
     id: "notion",
-    title: "Notion",
+    title: "Github & Notion",
     collapsible: true,
     tasks: [
+      {
+        id: "github-signup",
+        title: "Signup to https://github.com",
+        link: "https://github.com",
+        description: "Remember your GitHub username, we will ask you later for it",
+      },
       {
         id: "notion-signup",
         title: "Sign up to Notion",
