@@ -62,6 +62,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.delete("/api/progress", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      console.log(`[DELETE /api/progress] Resetting all progress for user ${userId}`);
+      await storage.resetProgress(userId);
+      console.log(`[DELETE /api/progress] Successfully reset progress for user ${userId}`);
+      res.json({ success: true, message: "Progress reset successfully" });
+    } catch (error) {
+      console.error("Error resetting progress:", error);
+      res.status(500).json({ error: "Failed to reset progress" });
+    }
+  });
+
   app.get("/api/admin/stats", isAuthenticated, isAdmin, async (req, res) => {
     try {
       const users = await storage.getAllUsers();

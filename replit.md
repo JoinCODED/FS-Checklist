@@ -40,6 +40,7 @@ The application is built with a React TypeScript frontend and an Express.js back
 - **Task Details**: Individual tasks can include external links, warning messages, helpful instructions, subtasks, and 'bonus' or 'important' badges.
 - **Important Reminder**: An auto-hiding notification lists incomplete important tasks and provides click-to-scroll navigation. It is not manually dismissible.
 - **Quick Reference Cards**: Provide easy access to essential information like WiFi credentials and mentor contact details.
+- **Reset Progress**: Button at the bottom of checklist allows users to clear all their progress with confirmation dialog for safety.
 - **Multi-user Support**: Each student has their own account and progress tracking, with protected routes for authenticated access.
 
 ### System Design Choices

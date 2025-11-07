@@ -21,6 +21,7 @@ export interface IStorage {
   ): Promise<ChecklistProgress>;
   getAllProgress(userId: string): Promise<Map<string, boolean>>;
   getAllUsersProgress(): Promise<ChecklistProgress[]>;
+  resetProgress(userId: string): Promise<void>;
 }
 
 export class DbStorage implements IStorage {
@@ -103,6 +104,12 @@ export class DbStorage implements IStorage {
       result.set(p.taskId, p.completed);
     });
     return result;
+  }
+
+  async resetProgress(userId: string): Promise<void> {
+    await db
+      .delete(checklistProgress)
+      .where(eq(checklistProgress.userId, userId));
   }
 }
 

@@ -11,7 +11,8 @@ import { ImportantTasksReminder } from "@/components/ImportantTasksReminder";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { LogOut, Users } from "lucide-react";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { LogOut, Users, RotateCcw } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Link } from "wouter";
 import Confetti from "react-confetti";
@@ -25,6 +26,7 @@ const STORAGE_KEY = "coded-checklist-progress";
 
 export default function Checklist() {
   const [showConfetti, setShowConfetti] = useState(false);
+  const [resetDialogOpen, setResetDialogOpen] = useState(false);
   const { width, height } = useWindowSize();
   const { user } = useAuth();
   const { toast } = useToast();
@@ -152,6 +154,39 @@ export default function Checklist() {
     }
   };
 
+  const resetProgressMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("DELETE", "/api/progress");
+    },
+    onSuccess: () => {
+      queryClient.setQueryData(["/api/progress"], {});
+      localStorage.removeItem(STORAGE_KEY);
+      setResetDialogOpen(false);
+      toast({
+        title: "Progress reset",
+        description: "All your progress has been cleared successfully",
+      });
+    },
+    onError: (error) => {
+      if (isUnauthorizedError(error as Error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/login";
+        }, 500);
+        return;
+      }
+      toast({
+        title: "Reset failed",
+        description: "Failed to reset progress. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   if (isLoading) {
     return <LoadingState />;
   }
@@ -266,6 +301,40 @@ export default function Checklist() {
           <QuickReference />
 
           <ConclusionMessage />
+
+          <div className="flex justify-center mt-12">
+            <AlertDialog open={resetDialogOpen} onOpenChange={setResetDialogOpen}>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="gap-2"
+                  data-testid="button-reset-progress"
+                >
+                  <RotateCcw className="h-4 w-4" />
+                  Reset All Progress
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will permanently delete all your checklist progress. This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel data-testid="button-cancel-reset">Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={() => resetProgressMutation.mutate()}
+                    disabled={resetProgressMutation.isPending}
+                    className="bg-destructive hover:bg-destructive/90"
+                    data-testid="button-confirm-reset"
+                  >
+                    {resetProgressMutation.isPending ? "Resetting..." : "Reset Progress"}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
         </div>
       </main>
 
