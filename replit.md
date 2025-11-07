@@ -179,6 +179,9 @@ This application helps new students complete their onboarding tasks before start
 - Updated Read at Home section:
   - Removed "Save CODED Education Number on your phone" task
   - Section now contains 2 tasks (device requirements, evaluation metrics)
+  - Added Notion documentation links to both tasks:
+    - Device requirements: Opens CODED Data Science Bootcamp Devices Requirements
+    - Evaluation metrics: Opens Data Science Trainee Evaluation Metrics
 - Updated total task count from 19 to 18 tasks
 - All changes tested and verified with end-to-end tests
 

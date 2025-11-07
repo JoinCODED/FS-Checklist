@@ -207,11 +207,13 @@ export const checklistData: ChecklistSection[] = [
         id: "device-requirements",
         title: "Check your device requirements",
         description: "Make sure they match the specs for CODED - Data Science Bootcamp",
+        link: "https://codedhome.notion.site/CODED-Data-Science-Bootcamp-Devices-Requirements-1df021af4a18808c932cd2676f6cccf7?pvs=24",
       },
       {
         id: "evaluation-metrics",
         title: "Check how the instruction team will evaluate your performance",
         description: "Review the Data Science Trainee Evaluation Metrics",
+        link: "https://codedhome.notion.site/Data-Science-Trainee-Evaluation-Metrics-1f4021af4a1880e0b0e0f87699fef1ee?pvs=24",
       },
     ],
   },
