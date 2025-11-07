@@ -187,8 +187,9 @@ export const checklistData: ChecklistSection[] = [
     tasks: [
       {
         id: "github-picture-form",
-        title: "Fill this form to submit your GitHub Account and Picture:",
+        title: "Fill this form to submit your GitHub Account and Picture",
         link: "https://airtable.com/appGSMF2eEC2s4abA/pagxHeida0bCbwok3/form",
+        description: "We will not use this picture in any midea, and will only be for the team to know your faster",
       },
       {
         id: "contract",
