@@ -86,25 +86,12 @@ export function QuickReference({ className = "" }: QuickReferenceProps) {
 
           <div className="flex items-start gap-3 p-3 rounded-md bg-muted/50">
             <Phone className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-            <div className="flex-1 min-w-0 space-y-1">
-              <p className="text-sm font-medium text-foreground">CODED Education Number</p>
-              <div className="flex items-center justify-between gap-2">
-                <code className="text-sm font-mono bg-background px-2 py-1 rounded flex-1">
-                  55421902
-                </code>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-7 px-2"
-                  onClick={() => copyToClipboard("55421902", "Phone number")}
-                  data-testid="button-copy-phone"
-                >
-                  {copiedItem === "Phone number" ? (
-                    <Check className="h-3.5 w-3.5 text-accent" />
-                  ) : (
-                    <Copy className="h-3.5 w-3.5" />
-                  )}
-                </Button>
+            <div className="flex-1 min-w-0 space-y-2">
+              <p className="text-sm font-medium text-foreground">Reach out to the mentors for any concerns!</p>
+              <div className="space-y-1">
+                <p className="text-sm text-foreground">Dr.Ammar Alhaj Ali</p>
+                <p className="text-sm text-foreground">Ahmad Alhazza</p>
+                <p className="text-sm text-foreground">Yousif Aldousari</p>
               </div>
             </div>
           </div>
