@@ -101,9 +101,9 @@ export const checklistData: ChecklistSection[] = [
         link: "https://cursor.com/download",
       },
       {
-        id: "kaggle",
-        title: "Create a Kaggle account",
-        link: "https://www.kaggle.com",
+        id: "git",
+        title: "Download git on your laptop and install it",
+        link: "https://git-scm.com/downloads",
       },
       {
         id: "discord-download",
