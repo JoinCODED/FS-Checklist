@@ -38,13 +38,13 @@ export default function Landing() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <CheckCircle className="h-5 w-5 text-white" />
                   <CardTitle className="text-lg">Track Progress</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Complete 19 essential tasks organized into logical sections to prepare for your bootcamp experience.
+                  Complete 18 essential tasks organized into logical sections to prepare for your bootcamp experience.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -52,7 +52,7 @@ export default function Landing() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <CheckCircle className="h-5 w-5 text-white" />
                   <CardTitle className="text-lg">Save Anywhere</CardTitle>
                 </div>
               </CardHeader>
@@ -66,7 +66,7 @@ export default function Landing() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <CheckCircle className="h-5 w-5 text-white" />
                   <CardTitle className="text-lg">Celebrate Success</CardTitle>
                 </div>
               </CardHeader>
