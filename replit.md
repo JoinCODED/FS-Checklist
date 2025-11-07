@@ -164,7 +164,13 @@ This application helps new students complete their onboarding tasks before start
 
 ## Recent Changes
 
-**2025-11-07**: Quick Reference and Read at Home section updates
+**2025-11-07**: Important Reminder card and content updates
+- Updated Important Reminder card (previously "Important Tasks Remaining"):
+  - Changed title from "Important Tasks Remaining" to "Important Reminder"
+  - Added static second bullet point: "Remember to complete setting up your trainee coded email sent to you by admission email"
+  - Email reminder always visible when card is shown
+  - First bullet: Dynamic contract task with Gmail link
+  - Second bullet: Static email setup reminder
 - Updated Quick Reference card:
   - Replaced CODED Education Number with mentor contact information
   - Changed icon from Phone to Users icon for mentors section

@@ -19,7 +19,7 @@ export function ImportantTasksReminder({ incompleteTasks, onTaskClick }: Importa
         <div className="flex-1 space-y-3">
           <div>
             <h3 className="text-lg font-bold text-foreground">
-              Important Tasks Remaining
+              Important Reminder
             </h3>
             <p className="text-sm text-muted-foreground mt-1">
               Please complete these critical tasks to ensure a smooth start to your bootcamp experience.
@@ -52,6 +52,12 @@ export function ImportantTasksReminder({ incompleteTasks, onTaskClick }: Importa
                 </div>
               </li>
             ))}
+            <li className="flex items-start gap-2">
+              <span className="text-destructive mt-0.5">•</span>
+              <p className="text-sm text-foreground font-medium" data-testid="text-email-reminder">
+                Remember to complete setting up your trainee coded email sent to you by admission email
+              </p>
+            </li>
           </ul>
         </div>
       </div>
