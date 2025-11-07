@@ -89,9 +89,7 @@ export function QuickReference({ className = "" }: QuickReferenceProps) {
             <div className="flex-1 min-w-0 space-y-2">
               <p className="text-sm font-medium text-foreground">Reach out to the mentors for any concerns!</p>
               <div className="space-y-1">
-                <p className="text-sm text-foreground">Dr.Ammar Alhaj Ali</p>
-                <p className="text-sm text-foreground">Ahmad Alhazza</p>
-                <p className="text-sm text-foreground">Yousif Aldousari</p>
+                <p className="text-sm text-foreground">TBA</p>
               </div>
             </div>
           </div>
