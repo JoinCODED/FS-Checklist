@@ -182,11 +182,6 @@ export const checklistData: ChecklistSection[] = [
         title: "Meet your instructors and mentors, discuss with them about the bootcamp, their work, and your goals",
       },
       {
-        id: "goodie-bag",
-        title: "Wait for your goodie bag!",
-        description: "Don't leave yet",
-      },
-      {
         id: "photo-submit",
         title: "Submit your picture",
         link: "https://airtable.com/appGSMF2eEC2s4abA/paguOET0VHvKo4BJL/form",
