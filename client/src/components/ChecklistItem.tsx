@@ -98,7 +98,7 @@ export function ChecklistItem({ task, completed, onToggle }: ChecklistItemProps)
                   key={subtask.id}
                   className="flex items-start gap-2 text-sm text-muted-foreground"
                 >
-                  <span className="text-primary mt-0.5">•</span>
+                  <span className="text-white mt-0.5">•</span>
                   <span className="flex-1 font-mono text-xs bg-muted px-2 py-1 rounded">
                     {subtask.text}
                   </span>
