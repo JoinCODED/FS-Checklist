@@ -186,6 +186,7 @@ export const checklistData: ChecklistSection[] = [
         title: "Submit your picture",
         link: "https://airtable.com/appGSMF2eEC2s4abA/paguOET0VHvKo4BJL/form",
         description: "We will not use this picture in any media, and will only be for the team to know you faster",
+        isBonus: true,
       },
     ],
   },
