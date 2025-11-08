@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { AlertCircle, Phone } from "lucide-react";
+import { AlertCircle, Phone, BookOpen } from "lucide-react";
 
 export function ConclusionMessage() {
   return (
@@ -23,18 +23,32 @@ export function ConclusionMessage() {
                 And if you have any questions or concerns during your academic journey to never hesitate to reach out to:
               </p>
             </div>
-            <Button
-              variant="default"
-              size="lg"
-              className="gap-2"
-              asChild
-              data-testid="button-call-coded"
-            >
-              <a href="tel:+96555421902">
-                <Phone className="h-4 w-4" />
-                CODED Education: 55421902
-              </a>
-            </Button>
+            <div className="flex flex-wrap gap-3">
+              <Button
+                variant="default"
+                size="lg"
+                className="gap-2"
+                asChild
+                data-testid="button-call-coded"
+              >
+                <a href="tel:+96555421902">
+                  <Phone className="h-4 w-4" />
+                  CODED Education: 55421902
+                </a>
+              </Button>
+              <Button
+                variant="default"
+                size="lg"
+                className="gap-2"
+                asChild
+                data-testid="button-presence-guide"
+              >
+                <a href="https://coded-programs.notion.site/Trainee-Presence-Guide-13cf3e92b8f680369013fe9c89f4c48f" target="_blank" rel="noopener noreferrer">
+                  <BookOpen className="h-4 w-4" />
+                  Trainee Presence Guide
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
