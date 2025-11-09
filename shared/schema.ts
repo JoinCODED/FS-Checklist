@@ -148,7 +148,7 @@ export const checklistData: ChecklistSection[] = [
     tasks: [
       {
         id: "google-account",
-        title: "Setup your Google @coded account",
+        title: "Login using @coded.edu.kw account",
         description: "Sent by CODED admission in your email. Assistant mentor can help you in the process.",
       },
     ],
