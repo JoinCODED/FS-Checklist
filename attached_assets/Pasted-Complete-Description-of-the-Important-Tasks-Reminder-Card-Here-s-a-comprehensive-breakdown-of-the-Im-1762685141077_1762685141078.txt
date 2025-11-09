@@ -1,0 +1,115 @@
+Complete Description of the Important Tasks Reminder Card
+Here's a comprehensive breakdown of the ImportantTasksReminder card component that you can use as a reference for another checklist:
+
+Card Container Styles
+<Card className="p-6 bg-destructive/10 border-destructive/30">
+
+Padding: p-6 = 1.5rem (24px) all around
+Background: bg-destructive/10 = Destructive red color at 10% opacity (very light pink/red tint)
+Border: border-destructive/30 = Destructive red color at 30% opacity
+Purpose: Creates an attention-grabbing warning/alert style
+Layout Structure
+<div className="flex items-start gap-4">
+
+Horizontal flexbox with items aligned to top
+1rem (16px) gap between icon and content
+Warning Icon
+<AlertTriangle className="h-6 w-6 text-destructive flex-shrink-0 mt-0.5" />
+
+Icon: AlertTriangle from lucide-react
+Size: h-6 w-6 = 1.5rem × 1.5rem (24px × 24px)
+Color: text-destructive = Full red/destructive color
+Position: flex-shrink-0 prevents icon from shrinking
+Alignment: mt-0.5 = 0.125rem (2px) top margin for visual alignment
+Content Section
+<div className="flex-1 space-y-3">
+
+Takes up remaining space (flex-1)
+space-y-3 = 0.75rem (12px) vertical spacing between child elements
+Heading Section
+<h3 className="text-lg font-bold text-foreground">
+  Important Reminder
+</h3>
+
+Size: text-lg = 1.125rem (18px)
+Weight: font-bold = 700
+Color: text-foreground = Navy blue (#14243F)
+Subtitle/Description
+<p className="text-sm text-muted-foreground mt-1">
+  Please complete these critical tasks to ensure a smooth start to your bootcamp experience.
+</p>
+
+Size: text-sm = 0.875rem (14px)
+Color: text-muted-foreground = Lighter navy (muted)
+Spacing: mt-1 = 0.25rem (4px) top margin
+Task List Container
+<ul className="space-y-2">
+
+Unordered list with 0.5rem (8px) spacing between items
+Individual Task Items
+<li className="flex items-start gap-2">
+  <span className="text-destructive mt-0.5">•</span>
+  <div className="flex flex-col gap-1">
+    {/* Task content */}
+  </div>
+</li>
+
+Bullet: Red destructive-colored bullet (•)
+Bullet Position: mt-0.5 for alignment
+Gap: 0.5rem (8px) between bullet and content
+Content Column: flex-col gap-1 for stacked elements with 0.25rem gap
+Clickable Task Title
+<button
+  onClick={() => onTaskClick(task.id)}
+  className="text-left text-sm text-foreground font-medium"
+>
+  {task.title} <span className="text-muted-foreground">({sectionTitle})</span>
+</button>
+
+Type: Interactive button (clickable to scroll to task)
+Size: text-sm = 0.875rem (14px)
+Weight: font-medium = 500
+Color: Navy for title, muted navy for section name in parentheses
+Alignment: text-left for proper text alignment
+Special Contract Task Links
+<a
+  href="https://mail.google.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-xs text-secondary hover:underline flex items-center gap-1"
+>
+  Check your mail
+  <span className="text-xs">→</span>
+</a>
+
+Size: text-xs = 0.75rem (12px)
+Color: text-secondary = Secondary blue (#004AA3)
+Hover: hover:underline for interaction feedback
+Arrow: → symbol for visual cue
+Layout: flex items-center gap-1 for inline icon
+Spam Warning Message
+<p className="text-xs text-muted-foreground ml-0">
+  • Check your spam / junk mail if you could not find the contract mail
+</p>
+
+Size: text-xs = 0.75rem (12px)
+Color: Muted navy for less emphasis
+Has bullet for list continuation
+Static Task (Email Setup)
+<li className="flex items-start gap-2">
+  <span className="text-destructive mt-0.5">•</span>
+  <p className="text-sm text-foreground font-medium">
+    Complete setting up trainee mail <span className="text-muted-foreground">(Setup Google Account)</span>
+  </p>
+</li>
+
+Same structure as dynamic tasks
+Hardcoded reminder without scroll functionality
+Key Features:
+Auto-hiding: Card only renders when incompleteTasks.length > 0
+Click-to-scroll: Task titles are clickable buttons that scroll to the actual task
+Dynamic content: Loops through incomplete important tasks
+Special handling: Contract task gets extra Gmail link and spam warning
+Destructive theme: Uses red/warning colors throughout for urgency
+Accessibility: Proper semantic HTML with data-testid attributes
+This creates a visually distinct, attention-grabbing reminder card that helps students focus on critical tasks!
