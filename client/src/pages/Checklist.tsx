@@ -10,7 +10,7 @@ import { ImportantTasksReminder } from "@/components/ImportantTasksReminder";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { RotateCcw, HandHeart } from "lucide-react";
+import { RotateCcw, HandHeart, Sparkles } from "lucide-react";
 import { Link } from "wouter";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@/hooks/use-window-size";
@@ -167,8 +167,8 @@ export default function Checklist() {
       <main className="container max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-8">
         <div className="space-y-6">
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <HandHeart className="h-10 w-10 md:h-12 md:w-12 text-primary flex-shrink-0" />
+            <div className="flex items-start gap-3">
+              <Sparkles className="h-10 w-10 md:h-12 md:w-12 text-primary flex-shrink-0 mt-1" />
               <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
                 Full Stack & AI Bootcamp
               </h1>
