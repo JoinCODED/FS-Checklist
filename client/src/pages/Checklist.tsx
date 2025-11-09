@@ -9,18 +9,13 @@ import { ConclusionMessage } from "@/components/ConclusionMessage";
 import { LoadingState } from "@/components/LoadingState";
 import { ImportantTasksReminder } from "@/components/ImportantTasksReminder";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { LogOut, Users, RotateCcw } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
+import { RotateCcw } from "lucide-react";
 import { Link } from "wouter";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@/hooks/use-window-size";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import { isUnauthorizedError } from "@/lib/authUtils";
 
 const STORAGE_KEY = "coded-checklist-progress";
 
@@ -28,7 +23,6 @@ export default function Checklist() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [resetDialogOpen, setResetDialogOpen] = useState(false);
   const { width, height } = useWindowSize();
-  const { user } = useAuth();
   const { toast } = useToast();
 
   // Load progress from localStorage instead of server
@@ -161,43 +155,11 @@ export default function Checklist() {
       <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between gap-4">
-            <CodedLogo />
-            <div className="flex items-center gap-2">
-              {user && (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="gap-2" data-testid="button-user-menu">
-                      <Avatar className="h-8 w-8">
-                        <AvatarImage src={user.profileImageUrl || undefined} />
-                        <AvatarFallback>
-                          {user.firstName?.[0] || user.email?.[0] || "U"}
-                        </AvatarFallback>
-                      </Avatar>
-                      <span className="hidden md:inline text-sm">
-                        {user.firstName || user.email || "User"}
-                      </span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    {user.isAdmin && (
-                      <Link href="/admin">
-                        <DropdownMenuItem data-testid="link-admin">
-                          <Users className="mr-2 h-4 w-4" />
-                          Admin Dashboard
-                        </DropdownMenuItem>
-                      </Link>
-                    )}
-                    <DropdownMenuItem
-                      onClick={() => window.location.href = "/api/logout"}
-                      data-testid="button-logout"
-                    >
-                      <LogOut className="mr-2 h-4 w-4" />
-                      Log out
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              )}
-            </div>
+            <Link href="/" asChild>
+              <a>
+                <CodedLogo />
+              </a>
+            </Link>
           </div>
         </div>
       </header>
