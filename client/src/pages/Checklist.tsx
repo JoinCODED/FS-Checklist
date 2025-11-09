@@ -191,10 +191,10 @@ export default function Checklist() {
                       <div className="flex items-start gap-3">
                         <HandHeart className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
                         <div className="space-y-2">
-                          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                          <h2 className="text-xl font-semibold text-foreground">
                             {section.title}
                           </h2>
-                          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                          <p className="text-base text-muted-foreground leading-relaxed">
                             {section.description}
                           </p>
                         </div>
