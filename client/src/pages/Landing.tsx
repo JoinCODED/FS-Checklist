@@ -38,7 +38,7 @@ export default function Landing() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-white" />
+                  <CheckCircle className="h-5 w-5 text-primary" />
                   <CardTitle className="text-lg">Track Progress</CardTitle>
                 </div>
               </CardHeader>
@@ -52,7 +52,7 @@ export default function Landing() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-white" />
+                  <CheckCircle className="h-5 w-5 text-primary" />
                   <CardTitle className="text-lg">Save Anywhere</CardTitle>
                 </div>
               </CardHeader>
@@ -66,7 +66,7 @@ export default function Landing() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-white" />
+                  <CheckCircle className="h-5 w-5 text-primary" />
                   <CardTitle className="text-lg">Celebrate Success</CardTitle>
                 </div>
               </CardHeader>

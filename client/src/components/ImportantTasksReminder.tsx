@@ -42,7 +42,7 @@ export function ImportantTasksReminder({ incompleteTasks, onTaskClick }: Importa
                       href="https://mail.google.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-white hover:underline flex items-center gap-1"
+                      className="text-xs text-primary hover:underline flex items-center gap-1"
                       data-testid="link-gmail-contract"
                     >
                       Check your Gmail

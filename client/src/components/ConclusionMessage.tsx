@@ -7,7 +7,7 @@ export function ConclusionMessage() {
     <Card className="p-8 bg-gradient-to-br from-primary/10 via-background to-secondary/5 border-primary/20">
       <div className="space-y-6">
         <div className="flex items-start gap-3">
-          <AlertCircle className="h-6 w-6 text-[#14243F] dark:text-white flex-shrink-0 mt-1" />
+          <AlertCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
           <div className="space-y-3 flex-1">
             <h3 className="text-2xl font-bold text-foreground">
               Welcome to CODED!
