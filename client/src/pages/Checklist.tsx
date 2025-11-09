@@ -10,7 +10,7 @@ import { ImportantTasksReminder } from "@/components/ImportantTasksReminder";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { RotateCcw, HandHeart, Sparkles } from "lucide-react";
+import { RotateCcw, HandHeart, Sparkles, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@/hooks/use-window-size";
@@ -197,6 +197,23 @@ export default function Checklist() {
                           <p className="text-base text-muted-foreground leading-relaxed">
                             {section.description}
                           </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+
+                  <Card className="p-8 bg-gradient-to-br from-primary/5 via-background to-accent/5 border-primary/10">
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <MapPin className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                        <div className="space-y-2">
+                          <h2 className="text-xl font-semibold text-foreground">
+                            When you arrive at CODED
+                          </h2>
+                          <div className="space-y-1 text-base text-muted-foreground">
+                            <p><span className="font-medium">WiFi Name:</span> Students / Students 2</p>
+                            <p><span className="font-medium">WiFi Password:</span> joincoded.com</p>
+                          </div>
                         </div>
                       </div>
                     </div>
