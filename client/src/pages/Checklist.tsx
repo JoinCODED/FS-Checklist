@@ -168,7 +168,7 @@ export default function Checklist() {
         <div className="space-y-6">
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
-              Full Stack Bootcamp
+              Full Stack & AI Bootcamp
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground">
               Orientation Checklist

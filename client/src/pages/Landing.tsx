@@ -20,7 +20,7 @@ export default function Landing() {
               Welcome to CODED
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-              Your journey into Full Stack starts here. Complete your orientation checklist before the bootcamp begins.
+              Your journey into Full Stack & AI starts here. Complete your orientation checklist before the bootcamp begins.
             </p>
           </div>
 
@@ -86,7 +86,7 @@ export default function Landing() {
       <footer className="border-t border-border mt-20">
         <div className="container max-w-6xl mx-auto px-4 py-8">
           <p className="text-center text-sm text-muted-foreground">
-            CODED Full Stack Bootcamp - Orientation Checklist
+            CODED Full Stack & AI Bootcamp - Orientation Checklist
           </p>
         </div>
       </footer>

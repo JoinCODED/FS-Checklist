@@ -211,7 +211,7 @@ export const checklistData: ChecklistSection[] = [
       {
         id: "device-requirements",
         title: "Check your device requirements",
-        description: "Make sure they match the specs for CODED - Full Stack Bootcamp",
+        description: "Make sure they match the specs for CODED - Full Stack & AI Bootcamp",
         link: "https://codedhome.notion.site/CODED-FullStack-Bootcamp-Devices-Requirements-80efcae90fe741f7a3d71feddf9c330d",
       },
       {
