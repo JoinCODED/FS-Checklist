@@ -83,14 +83,6 @@ export const checklistData: ChecklistSection[] = [
     collapsible: true,
     tasks: [
       {
-        id: "wifi",
-        title: "Connect your laptop to our WiFi",
-        subtasks: [
-          { id: "wifi-name", text: "WiFi name: Students or Students2 or CampusB" },
-          { id: "wifi-password", text: "WiFi password: joincoded.com" },
-        ],
-      },
-      {
         id: "chrome",
         title: "Download Chrome on your laptop",
         link: "https://www.google.com/chrome",
@@ -104,17 +96,6 @@ export const checklistData: ChecklistSection[] = [
         id: "git",
         title: "Download git on your laptop and install it",
         link: "https://git-scm.com/downloads",
-      },
-      {
-        id: "discord-download",
-        title: "Download Discord on both your laptop and mobile",
-        link: "https://discord.com/download",
-        warning: "DON'T CREATE A NEW SERVER! YOU WILL JOIN OUR SERVER",
-      },
-      {
-        id: "google-account",
-        title: "Setup your Google @coded account",
-        description: "Sent by CODED admission in your email. Assistant mentor can help you in the process.",
       },
       {
         id: "whatsapp-contact",
@@ -131,6 +112,12 @@ export const checklistData: ChecklistSection[] = [
     title: "Discord",
     collapsible: true,
     tasks: [
+      {
+        id: "discord-download",
+        title: "Download Discord on both your laptop and mobile",
+        link: "https://discord.com/download",
+        warning: "DON'T CREATE A NEW SERVER! YOU WILL JOIN OUR SERVER",
+      },
       {
         id: "discord-join",
         title: "Click this link to join our server",
@@ -149,6 +136,18 @@ export const checklistData: ChecklistSection[] = [
         description: "It's nice for your colleagues and instructors to know who you are in the first few days based on your photo",
         isBonus: true,
         helpText: "User Settings → My Account → Change Avatar",
+      },
+    ],
+  },
+  {
+    id: "google-account",
+    title: "Google Account",
+    collapsible: true,
+    tasks: [
+      {
+        id: "google-account",
+        title: "Setup your Google @coded account",
+        description: "Sent by CODED admission in your email. Assistant mentor can help you in the process.",
       },
     ],
   },
