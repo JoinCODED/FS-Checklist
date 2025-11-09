@@ -9,8 +9,9 @@ import { ConclusionMessage } from "@/components/ConclusionMessage";
 import { LoadingState } from "@/components/LoadingState";
 import { ImportantTasksReminder } from "@/components/ImportantTasksReminder";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { RotateCcw } from "lucide-react";
+import { RotateCcw, HandHeart } from "lucide-react";
 import { Link } from "wouter";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@/hooks/use-window-size";
@@ -183,14 +184,21 @@ export default function Checklist() {
             if (section.id === "welcome") {
               return (
                 <div key={section.id} className="space-y-6">
-                  <div className="space-y-4">
-                    <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                      {section.title}
-                    </h2>
-                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                      {section.description}
-                    </p>
-                  </div>
+                  <Card className="p-8 bg-gradient-to-br from-primary/5 via-background to-accent/5 border-primary/10">
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <HandHeart className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                        <div className="space-y-2">
+                          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                            {section.title}
+                          </h2>
+                          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                            {section.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
                   <WelcomeMessage />
                 </div>
               );
