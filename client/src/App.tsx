@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/hooks/use-theme";
 import Checklist from "@/pages/Checklist";
 import Landing from "@/pages/Landing";
+import PresenceGuide from "@/pages/PresenceGuide";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -13,6 +14,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Landing} />
       <Route path="/checklist" component={Checklist} />
+      <Route path="/presence-guide" component={PresenceGuide} />
       <Route component={NotFound} />
     </Switch>
   );

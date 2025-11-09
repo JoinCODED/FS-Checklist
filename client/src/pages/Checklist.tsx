@@ -10,13 +10,12 @@ import { ImportantTasksReminder } from "@/components/ImportantTasksReminder";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { RotateCcw, HandHeart, Sparkles, MapPin, Copy, BookOpen } from "lucide-react";
+import { RotateCcw, HandHeart, Sparkles, MapPin, Copy, BookOpen, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@/hooks/use-window-size";
 import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const STORAGE_KEY = "coded-checklist-progress";
 
@@ -241,96 +240,16 @@ export default function Checklist() {
                         
                         <div className="space-y-3 pt-2">
                           <p className="text-sm text-muted-foreground">Read your presence guide</p>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button
-                                variant="default"
-                                className="gap-2"
-                                data-testid="button-presence-guide"
-                              >
-                                <BookOpen className="h-4 w-4" />
-                                Trainee Presence Guide
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
-                              <DialogHeader>
-                                <DialogTitle className="text-2xl">Trainee Presence Guide</DialogTitle>
-                                <DialogDescription className="sr-only">
-                                  Guidelines for professional appearance, communication, classroom behavior, and ethics
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="space-y-6 mt-4">
-                                <div className="space-y-4">
-                                  <h3 className="text-lg font-semibold">Professional Appearance 👔</h3>
-                                  <p className="text-sm text-muted-foreground">
-                                    ✨ As part of CODED's goal to be a leader in our field, we aim to follow key guidelines for both offline and online presence.
-                                  </p>
-                                  <div className="space-y-3">
-                                    <div className="space-y-2">
-                                      <h4 className="font-medium">Dress Code</h4>
-                                      <p className="text-sm text-muted-foreground">Type: Smart / Business casual</p>
-                                      <ul className="list-disc list-inside space-y-1 text-sm">
-                                        <li>Look professional</li>
-                                        <li>No Shorts or Short Skirts 🩳👗: Employees are required to wear pants, skirts, or dresses that are of an appropriate length. Skirts and dresses should be longer than knee-length. Shorts are not permitted.</li>
-                                        <li>No Exposure of the Chest Area 🚫: All clothing should fully cover the chest area. Low-cut tops, shirts with plunging necklines, or other clothing that reveals the chest are not permitted.</li>
-                                        <li>Shirt Sleeve Policy 👕: All must wear shirts with sleeves. Sleeveless tops, tank tops, or spaghetti straps are not allowed. Shirts should have sleeves that extend at least to the mid-upper arm for a professional appearance.</li>
-                                      </ul>
-                                    </div>
-                                    <p className="text-sm">
-                                      <span className="font-medium">Online Presence 💻:</span> Ensure that your profile photo and name are up-to-date and match your real-world identity across all online communication tools. This helps trainees easily recognize and connect with you.
-                                    </p>
-                                    <p className="text-sm">
-                                      <span className="font-medium">Tattoo Policy 👘:</span> Cover visible tattoos at CODED campus and during class.
-                                    </p>
-                                    <p className="text-sm">
-                                      <span className="font-medium">Accessory Restrictions 💥:</span> Keep it simple; no flashy or noisy accessories.
-                                    </p>
-                                  </div>
-                                </div>
-
-                                <div className="space-y-4">
-                                  <h3 className="text-lg font-semibold">Communication and Interaction 📡</h3>
-                                  <ul className="space-y-2 text-sm">
-                                    <li><span className="font-medium">Positive Engagement 😊:</span> Greet others with a smile, be friendly.</li>
-                                    <li><span className="font-medium">Support and Discipline 👍:</span> Request assistance from the education team within your bootcamp to get help with challenges and explain concepts clearly.</li>
-                                    <li><span className="font-medium">Professional Boundaries 🚫:</span> Don't share personal contact info, avoid over-socializing, and be patient when texting the education team. They will assist you when they can.</li>
-                                    <li><span className="font-medium">Behavioral Standards ❌:</span> No swearing, bullying, or threats—keep a good attitude.</li>
-                                    <li><span className="font-medium">Calm Conflict Resolution 🧘‍♂️:</span> Stay calm during conflicts and report issues immediately to CODED.</li>
-                                  </ul>
-                                </div>
-
-                                <div className="space-y-4">
-                                  <h3 className="text-lg font-semibold">Inside our Classroom 🧑🏻‍🏫</h3>
-                                  <ul className="space-y-2 text-sm">
-                                    <li><span className="font-medium">No Phones 📵:</span> No personal phones during class unless really needed.</li>
-                                    <li><span className="font-medium">Stay Focused 🎯:</span> Keep personal talks for after class and make it safe for trainees to ask questions.</li>
-                                    <li><span className="font-medium">Trainees Only in Class 🚫👥:</span> No guests allowed; the classroom is for trainees only.</li>
-                                    <li><span className="font-medium">Keep your place Clean 🧼:</span> Don't leave your desk messy at the end of the day. Let's make sure you and other trainees have the best environment while teaching.</li>
-                                    <li><span className="font-medium">Announcements 🎙️:</span> Make sure you turn on your Discord notifications so you can receive all announcements.</li>
-                                  </ul>
-                                </div>
-
-                                <div className="space-y-4">
-                                  <h3 className="text-lg font-semibold">Ethics and Professional Development 🎥</h3>
-                                  <ul className="space-y-2 text-sm">
-                                    <li><span className="font-medium">Respect Everyone 🌍:</span> Be kind to all cultures and treat every trainee fairly. Speak clearly in Arabic or English.</li>
-                                    <li><span className="font-medium">Be Punctual ⏰:</span> Start and end classes on time.</li>
-                                    <li><span className="font-medium">Stay Adaptable 🔄:</span> Adjust lessons based on feedback and class progress.</li>
-                                    <li><span className="font-medium">Keep Improving 📈:</span> Regularly seek feedback to improve teaching.</li>
-                                    <li>
-                                      <div className="space-y-1">
-                                        <span className="font-medium">Education Communication 📲:</span>
-                                        <ul className="list-disc list-inside ml-4 space-y-1">
-                                          <li>Always keep your instructor and TAs informed if you will be late, attending online, or can't make it.</li>
-                                          <li>Also, make sure to respond to them when they reach out to you. This way, our team can stay aligned with your needs and won't have to worry about you.</li>
-                                        </ul>
-                                      </div>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </DialogContent>
-                          </Dialog>
+                          <Link href="/presence-guide">
+                            <Button
+                              variant="default"
+                              className="gap-2"
+                              data-testid="button-presence-guide"
+                            >
+                              <BookOpen className="h-4 w-4" />
+                              Trainee Presence Guide
+                            </Button>
+                          </Link>
                         </div>
                       </div>
                     </div>
