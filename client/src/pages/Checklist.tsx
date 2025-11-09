@@ -4,7 +4,6 @@ import { CodedLogo } from "@/components/CodedLogo";
 import { ProgressBar } from "@/components/ProgressBar";
 import { ChecklistSection } from "@/components/ChecklistSection";
 import { QuickReference } from "@/components/QuickReference";
-import { WelcomeMessage } from "@/components/WelcomeMessage";
 import { ConclusionMessage } from "@/components/ConclusionMessage";
 import { LoadingState } from "@/components/LoadingState";
 import { ImportantTasksReminder } from "@/components/ImportantTasksReminder";
@@ -168,9 +167,12 @@ export default function Checklist() {
       <main className="container max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-8">
         <div className="space-y-6">
           <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
-              Full Stack & AI Bootcamp
-            </h1>
+            <div className="flex items-center gap-3">
+              <HandHeart className="h-10 w-10 md:h-12 md:w-12 text-primary flex-shrink-0" />
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
+                Full Stack & AI Bootcamp
+              </h1>
+            </div>
             <p className="text-xl md:text-2xl text-muted-foreground">
               Orientation Checklist
             </p>
@@ -199,7 +201,6 @@ export default function Checklist() {
                       </div>
                     </div>
                   </Card>
-                  <WelcomeMessage />
                 </div>
               );
             }
