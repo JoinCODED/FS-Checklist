@@ -238,7 +238,7 @@ export default function Checklist() {
                           </div>
                         </div>
                         
-                        <div className="space-y-3 pt-2">
+                        <div className="space-y-4 pt-2">
                           <p className="text-sm text-muted-foreground">Read your presence guide</p>
                           <Link href="/presence-guide">
                             <Button
