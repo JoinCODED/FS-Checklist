@@ -31,9 +31,28 @@ export default function Checklist() {
   const { user } = useAuth();
   const { toast } = useToast();
 
-  const { data: serverProgress, isLoading, error: progressError } = useQuery<Record<string, boolean>>({
-    queryKey: ["/api/progress"],
+  // Load progress from localStorage instead of server
+  const [localProgress, setLocalProgress] = useState<Record<string, boolean>>(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        const result: Record<string, boolean> = {};
+        parsed.forEach((taskId: string) => {
+          result[taskId] = true;
+        });
+        return result;
+      } catch (e) {
+        console.error("Failed to parse stored progress", e);
+        return {};
+      }
+    }
+    return {};
   });
+
+  const serverProgress = localProgress;
+  const isLoading = false;
+  const progressError = null;
 
   const completedTasks = useMemo(() => {
     return new Set<string>(
@@ -43,76 +62,29 @@ export default function Checklist() {
     );
   }, [serverProgress]);
 
+  // Save to localStorage whenever progress changes
   useEffect(() => {
-    if (progressError) {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        try {
-          const parsed = JSON.parse(stored);
-          const result: Record<string, boolean> = {};
-          parsed.forEach((taskId: string) => {
-            result[taskId] = true;
-          });
-          queryClient.setQueryData(["/api/progress"], result);
-        } catch (e) {
-          console.error("Failed to parse stored progress", e);
-        }
-      }
-    }
-  }, [progressError]);
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(Array.from(completedTasks))
+    );
+  }, [completedTasks]);
 
   const updateProgressMutation = useMutation({
     mutationFn: async ({ taskId, completed }: { taskId: string; completed: boolean }) => {
-      return await apiRequest("POST", "/api/progress", { taskId, completed });
+      // Update localStorage directly
+      const updated = { ...localProgress, [taskId]: completed };
+      setLocalProgress(updated);
+      return updated;
     },
-    onMutate: async ({ taskId, completed }) => {
-      await queryClient.cancelQueries({ queryKey: ["/api/progress"] });
-      
-      const previousProgress = queryClient.getQueryData<Record<string, boolean>>(["/api/progress"]);
-      
-      queryClient.setQueryData<Record<string, boolean>>(["/api/progress"], (old = {}) => {
-        const updated = { ...old, [taskId]: completed };
-        
-        const newCompletedCount = Object.values(updated).filter(Boolean).length;
-        if (completed && newCompletedCount === totalTasks) {
-          setShowConfetti(true);
-          setTimeout(() => setShowConfetti(false), 5000);
-        }
-        
-        return updated;
-      });
-      
-      return { previousProgress };
-    },
-    onError: (error, _variables, context) => {
-      if (isUnauthorizedError(error as Error)) {
-        toast({
-          title: "Unauthorized",
-          description: "You are logged out. Logging in again...",
-          variant: "destructive",
-        });
-        setTimeout(() => {
-          window.location.href = "/api/login";
-        }, 500);
-        return;
+    onSuccess: (data, { completed }) => {
+      const newCompletedCount = Object.values(data).filter(Boolean).length;
+      if (completed && newCompletedCount === totalTasks) {
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 5000);
       }
-      if (context?.previousProgress) {
-        queryClient.setQueryData(["/api/progress"], context.previousProgress);
-      }
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/progress"] });
     },
   });
-
-  useEffect(() => {
-    if (serverProgress) {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(Array.from(completedTasks))
-      );
-    }
-  }, [serverProgress, completedTasks]);
 
   const totalTasks = checklistData.reduce(
     (sum, section) => sum + section.tasks.length,
@@ -156,33 +128,16 @@ export default function Checklist() {
 
   const resetProgressMutation = useMutation({
     mutationFn: async () => {
-      return await apiRequest("DELETE", "/api/progress");
+      // Reset localStorage directly
+      setLocalProgress({});
+      localStorage.removeItem(STORAGE_KEY);
+      return {};
     },
     onSuccess: () => {
-      queryClient.setQueryData(["/api/progress"], {});
-      localStorage.removeItem(STORAGE_KEY);
       setResetDialogOpen(false);
       toast({
         title: "Progress reset",
         description: "All your progress has been cleared successfully",
-      });
-    },
-    onError: (error) => {
-      if (isUnauthorizedError(error as Error)) {
-        toast({
-          title: "Unauthorized",
-          description: "You are logged out. Logging in again...",
-          variant: "destructive",
-        });
-        setTimeout(() => {
-          window.location.href = "/api/login";
-        }, 500);
-        return;
-      }
-      toast({
-        title: "Reset failed",
-        description: "Failed to reset progress. Please try again.",
-        variant: "destructive",
       });
     },
   });

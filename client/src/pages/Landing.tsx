@@ -2,6 +2,7 @@ import { CodedLogo } from "@/components/CodedLogo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Landing() {
   return (
@@ -27,10 +28,12 @@ export default function Landing() {
             <Button
               size="lg"
               className="text-lg px-8 py-6"
-              onClick={() => window.location.href = "/api/login"}
+              asChild
               data-testid="button-login"
             >
-              Get Started
+              <Link href="/checklist">
+                Get Started
+              </Link>
             </Button>
           </div>
 
