@@ -51,6 +51,7 @@ export interface ChecklistTask {
   helpText?: string;
   isBonus?: boolean;
   isImportant?: boolean;
+  isRecommended?: boolean;
 }
 
 export interface ChecklistSubtask {
@@ -86,6 +87,7 @@ export const checklistData: ChecklistSection[] = [
         id: "chrome",
         title: "Download Chrome on your laptop",
         link: "https://www.google.com/chrome",
+        isRecommended: true,
       },
       {
         id: "cursor",

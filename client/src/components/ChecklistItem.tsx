@@ -56,6 +56,11 @@ export function ChecklistItem({ task, completed, onToggle }: ChecklistItemProps)
                   Important
                 </Badge>
               )}
+              {task.isRecommended && (
+                <Badge variant="default" className="text-xs bg-primary hover:bg-primary">
+                  Recommended
+                </Badge>
+              )}
               {task.isBonus && (
                 <Badge variant="secondary" className="text-xs">
                   Bonus
