@@ -240,16 +240,16 @@ export default function Checklist() {
                         
                         <div className="space-y-4 pt-2">
                           <p className="text-sm text-muted-foreground">Read your presence guide</p>
-                          <Link href="/presence-guide">
-                            <Button
-                              variant="default"
-                              className="gap-2"
-                              data-testid="button-presence-guide"
-                            >
+                          <Button
+                            asChild
+                            className="gap-2 bg-[#14243F] hover:bg-[#14243F]/90 text-white"
+                            data-testid="button-presence-guide"
+                          >
+                            <Link href="/presence-guide">
                               <BookOpen className="h-4 w-4" />
                               Trainee Presence Guide
-                            </Button>
-                          </Link>
+                            </Link>
+                          </Button>
                         </div>
                       </div>
                     </div>
