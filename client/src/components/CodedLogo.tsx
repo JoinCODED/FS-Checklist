@@ -12,7 +12,7 @@ export function CodedLogo({ className = "" }: { className?: string }) {
         {/* Left bracket [ */}
         <path
           d="M13 8 L8 8 L8 32 L13 32"
-          stroke="white"
+          stroke="hsl(var(--primary))"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -20,7 +20,7 @@ export function CodedLogo({ className = "" }: { className?: string }) {
         {/* Right bracket ] */}
         <path
           d="M27 8 L32 8 L32 32 L27 32"
-          stroke="white"
+          stroke="hsl(var(--primary))"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -29,7 +29,7 @@ export function CodedLogo({ className = "" }: { className?: string }) {
         <path
           d="M25 15 A7 7 0 0 0 13 20 A7 7 0 0 0 25 25"
           fill="none"
-          stroke="white"
+          stroke="hsl(var(--primary))"
           strokeWidth="3.5"
           strokeLinecap="round"
         />
