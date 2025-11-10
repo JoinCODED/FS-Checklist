@@ -1,96 +1,53 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Wifi, Users, Copy, Check } from "lucide-react";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
+import { BookText, Phone, GraduationCap, ExternalLink } from "lucide-react";
+import { Link } from "wouter";
 
 interface QuickReferenceProps {
   className?: string;
 }
 
 export function QuickReference({ className = "" }: QuickReferenceProps) {
-  const [copiedItem, setCopiedItem] = useState<string | null>(null);
-  const { toast } = useToast();
-
-  const copyToClipboard = async (text: string, label: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedItem(label);
-      toast({
-        title: "Copied!",
-        description: `${label} copied to clipboard`,
-      });
-      setTimeout(() => setCopiedItem(null), 2000);
-    } catch (err) {
-      toast({
-        title: "Failed to copy",
-        description: "Please try again",
-        variant: "destructive",
-      });
-    }
-  };
-
   return (
     <Card className={`p-6 ${className}`} data-testid="quick-reference">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-          <Wifi className="h-5 w-5 text-primary" />
+          <BookText className="h-5 w-5 text-[#14243F]" />
           Quick reference
         </h3>
         
         <div className="space-y-3">
           <div className="flex items-start gap-3 p-3 rounded-md bg-muted/50">
-            <Wifi className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-            <div className="flex-1 min-w-0 space-y-2">
-              <p className="text-sm font-medium text-foreground">WiFi credentials</p>
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between gap-2">
-                  <code className="text-sm font-mono bg-background px-2 py-1 rounded flex-1">
-                    Students / Students2 / Campus-B
-                  </code>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-7 px-2"
-                    onClick={() => copyToClipboard("Students", "WiFi name")}
-                    data-testid="button-copy-wifi"
-                  >
-                    {copiedItem === "WiFi name" ? (
-                      <Check className="h-3.5 w-3.5 text-accent" />
-                    ) : (
-                      <Copy className="h-3.5 w-3.5" />
-                    )}
-                  </Button>
-                </div>
-                <div className="flex items-center justify-between gap-2">
-                  <code className="text-sm font-mono bg-background px-2 py-1 rounded flex-1">
-                    joincoded.com
-                  </code>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-7 px-2"
-                    onClick={() => copyToClipboard("joincoded.com", "WiFi password")}
-                    data-testid="button-copy-password"
-                  >
-                    {copiedItem === "WiFi password" ? (
-                      <Check className="h-3.5 w-3.5 text-accent" />
-                    ) : (
-                      <Copy className="h-3.5 w-3.5" />
-                    )}
-                  </Button>
-                </div>
-              </div>
+            <Phone className="h-5 w-5 text-[#14243F] flex-shrink-0 mt-0.5" />
+            <div className="flex-1 min-w-0 space-y-3">
+              <p className="text-sm font-medium text-foreground">Contact Education Team</p>
+              <Button
+                variant="default"
+                size="lg"
+                asChild
+                data-testid="button-call-coded"
+              >
+                <a href="tel:+96555421902">
+                  CODED Education: 55421902
+                </a>
+              </Button>
             </div>
           </div>
 
           <div className="flex items-start gap-3 p-3 rounded-md bg-muted/50">
-            <Users className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-            <div className="flex-1 min-w-0 space-y-2">
-              <p className="text-sm font-medium text-foreground">Reach out to the mentors for any concerns!</p>
-              <div className="space-y-1">
-                <p className="text-sm text-foreground">TBA</p>
-              </div>
+            <GraduationCap className="h-5 w-5 text-[#14243F] flex-shrink-0 mt-0.5" />
+            <div className="flex-1 min-w-0 space-y-3">
+              <p className="text-sm font-medium text-foreground">Full Stack & AI Curriculum</p>
+              <Button
+                className="gap-2 bg-[#14243F] hover:bg-[#14243F]/90 text-white"
+                asChild
+                data-testid="button-view-curriculum"
+              >
+                <Link href="/curriculum">
+                  <ExternalLink className="h-4 w-4" />
+                  View Curriculum
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

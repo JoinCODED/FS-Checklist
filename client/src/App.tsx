@@ -9,6 +9,7 @@ import Landing from "@/pages/Landing";
 import PresenceGuide from "@/pages/PresenceGuide";
 import DeviceRequirements from "@/pages/DeviceRequirements";
 import EvaluationMetrics from "@/pages/EvaluationMetrics";
+import Curriculum from "@/pages/Curriculum";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/presence-guide" component={PresenceGuide} />
       <Route path="/device-requirements" component={DeviceRequirements} />
       <Route path="/evaluation-metrics" component={EvaluationMetrics} />
+      <Route path="/curriculum" component={Curriculum} />
       <Route component={NotFound} />
     </Switch>
   );
