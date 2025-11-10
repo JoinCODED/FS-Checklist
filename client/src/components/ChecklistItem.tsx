@@ -1,7 +1,7 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, AlertTriangle, HelpCircle } from "lucide-react";
+import { ExternalLink, AlertTriangle, HelpCircle, Eye } from "lucide-react";
 import { ChecklistTask } from "@shared/schema";
 import { cn } from "@/lib/utils";
 import {
@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/collapsible";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { Link } from "wouter";
 
 interface ChecklistItemProps {
   task: ChecklistTask;
@@ -66,7 +67,21 @@ export function ChecklistItem({ task, completed, onToggle }: ChecklistItemProps)
                   Bonus
                 </Badge>
               )}
-              {task.link && (
+              {task.internalRoute && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-7 px-2 gap-1.5"
+                  asChild
+                  data-testid={`link-${task.id}`}
+                >
+                  <Link href={task.internalRoute}>
+                    <span className="text-xs">View</span>
+                    <Eye className="h-3 w-3" />
+                  </Link>
+                </Button>
+              )}
+              {task.link && !task.internalRoute && (
                 <Button
                   variant="ghost"
                   size="sm"

@@ -1,0 +1,63 @@
+{
+  "title": "CODED - FullStack Bootcamp Devices Requirements",
+  "description": "Every student should have a portable laptop where they can bring it to campus, and go back home with it.",
+  "requirements": {
+    "RAM": {
+      "Minimum": "8GB",
+      "Recommended": "16GB",
+      "NiceToHave": "32GB (will not need more)"
+    },
+    "Processor": {
+      "Minimum": "Intel Core i5 or AMD Ryzen 5",
+      "Recommended": "Intel Core i7 or AMD Ryzen 7",
+      "NiceToHave": "Intel Core i9, AMD Ryzen 9, or Apple M2/M4 Pro"
+    },
+    "Storage": {
+      "Minimum": "256GB SSD",
+      "Recommended": "512GB SSD",
+      "NiceToHave": "1TB SSD"
+    },
+    "ScreenSize": {
+      "Minimum": "13\"",
+      "Recommended": "13 to 15\"",
+      "NiceToHave": "15\""
+    },
+    "ManufactureYear": {
+      "Minimum": "2020+",
+      "Recommended": "2023+",
+      "NiceToHave": "Latest year"
+    },
+    "OperatingSystem": {
+      "Minimum": "Windows 10+ / MacOS 12+",
+      "Recommended": "Windows 10+ / MacOS Big Sur",
+      "NiceToHave": "Latest versions"
+    }
+  },
+  "exampleRecommendations": [
+    {
+      "name": "Apple MacBook Pro, M4 Pro Chip, 24GB RAM, 512GB SSD, 14-inch, MX2H3AB/A - Space Black",
+      "vendor": "Xcite Kuwait",
+      "url": "https://www.xcite.com/apple-macbook-pro-m4-pro-chip-24gb-ram-512gb-ssd-14-inch-mx2h3ab-a-space-black/p?srsltid=AfmBOoo74H6SQOdQ6kK1Z_8Gw84JqyMingzu8hgLBRzqU3UEodFRXBKJ"
+    },
+    {
+      "name": "Lenovo Yoga Slim 7 Laptop 13 Inch Intel Core i5-1240P 16GB RAM 1TB SSD - Grey",
+      "vendor": "Best Alyousifi",
+      "url": "https://best.com.kw/en/product/82U90084AX/Lenovo-Yoga-Slim-7-Laptop-13-Inch-Intel-Core-i5-1240P-16GB-RAM-1TB-SSD---Grey-"
+    },
+    {
+      "name": "LENOVO IdeaPad Flex 5 Laptop, Intel Core i5, 16GB RAM, 512GB SSD, 14-inch, Intel Graphics Xe, Windows 11 Home, 82R700KWAX – Gray",
+      "vendor": "Xcite Kuwait",
+      "url": "https://www.xcite.com/lenovo-ideapad-flex-5-laptop-intel-core-i5-16gb-ram-512gb-ssd-14-inch-intel-graphics-xe-windows-11-home-82r700kwax-gray/p"
+    },
+    {
+      "name": "HP Envy x360 2 in 1 Laptop, Intel Core i7, 16GB RAM, 512GB SSD, 13.3-inch, Intel Iris Xe Graphics, Windows 11 Home, 13-BF0018NE – Silver",
+      "vendor": "Xcite Kuwait",
+      "url": "https://www.xcite.com/hp-15-2in1-laptop-intel-core-i7-16gb-ram-512gb-ssd-13-3-inch-intel-iris-xe-windows-11-home-13-bf0018ne-silver/p"
+    },
+    {
+      "name": "Apple MacBook Air M1, RAM 8GB, 256GB SSD 13.3-inch, (2020) - MGN63AB/A - Space Grey",
+      "vendor": "Xcite Kuwait",
+      "url": "https://www.xcite.com/apple-macbook-air-m1-ram-8gb-256gb-ssd-13-3-inch-2020-space-grey/p?queryID=282ef4a1feaf3e242e24585e047da4ea&objectID=176350&indexName=prod_kw_en_products"
+    }
+  ]
+}

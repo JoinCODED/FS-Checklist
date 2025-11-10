@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/hooks/use-theme";
 import Checklist from "@/pages/Checklist";
 import Landing from "@/pages/Landing";
 import PresenceGuide from "@/pages/PresenceGuide";
+import DeviceRequirements from "@/pages/DeviceRequirements";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -15,6 +16,7 @@ function Router() {
       <Route path="/" component={Landing} />
       <Route path="/checklist" component={Checklist} />
       <Route path="/presence-guide" component={PresenceGuide} />
+      <Route path="/device-requirements" component={DeviceRequirements} />
       <Route component={NotFound} />
     </Switch>
   );
