@@ -72,7 +72,7 @@ export function ImportantTasksReminder({ incompleteTasks, onTaskClick }: Importa
             <li className="flex items-start gap-2">
               <span className="text-destructive mt-0.5">•</span>
               <p className="text-sm text-foreground font-medium" data-testid="text-email-reminder">
-                Remember to complete setting up your trainee coded email sent to you by admission email
+                Complete setting up trainee mail <span className="text-muted-foreground">(Google Account)</span>
               </p>
             </li>
           </ul>
