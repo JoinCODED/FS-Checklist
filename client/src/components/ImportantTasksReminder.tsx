@@ -38,16 +38,28 @@ export function ImportantTasksReminder({ incompleteTasks, onTaskClick }: Importa
                     {task.title} <span className="text-muted-foreground">({sectionTitle})</span>
                   </button>
                   {task.id === "contract" && (
-                    <a
-                      href="https://mail.google.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-primary hover:underline flex items-center gap-1"
-                      data-testid="link-gmail-contract"
-                    >
-                      Check your Gmail
-                      <span className="text-xs">→</span>
-                    </a>
+                    <div className="flex items-center gap-3">
+                      <a
+                        href="https://mail.google.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-primary hover:underline flex items-center gap-1"
+                        data-testid="link-gmail-contract"
+                      >
+                        Click for Gmail
+                        <span className="text-xs">→</span>
+                      </a>
+                      <a
+                        href="https://outlook.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-primary hover:underline flex items-center gap-1"
+                        data-testid="link-outlook-contract"
+                      >
+                        Click for Outlook
+                        <span className="text-xs">→</span>
+                      </a>
+                    </div>
                   )}
                 </div>
               </li>
