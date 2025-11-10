@@ -220,7 +220,7 @@ export const checklistData: ChecklistSection[] = [
         id: "evaluation-metrics",
         title: "Check how the instruction team will evaluate your performance",
         description: "Review the Fullstack Trainee Evaluation Metrics",
-        link: "https://codedhome.notion.site/Fullstack-Trainee-Evaluation-Metrics-1f4021af4a18800d9c51de9d179c52dc",
+        internalRoute: "/evaluation-metrics",
       },
     ],
   },
