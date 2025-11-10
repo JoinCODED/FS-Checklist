@@ -38,27 +38,32 @@ export function ImportantTasksReminder({ incompleteTasks, onTaskClick }: Importa
                     {task.title} <span className="text-muted-foreground">({sectionTitle})</span>
                   </button>
                   {task.id === "contract" && (
-                    <div className="flex items-center gap-3">
-                      <a
-                        href="https://mail.google.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-primary hover:underline flex items-center gap-1"
-                        data-testid="link-gmail-contract"
-                      >
-                        Click for Gmail
-                        <span className="text-xs">→</span>
-                      </a>
-                      <a
-                        href="https://outlook.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-primary hover:underline flex items-center gap-1"
-                        data-testid="link-outlook-contract"
-                      >
-                        Click for Outlook
-                        <span className="text-xs">→</span>
-                      </a>
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-3">
+                        <a
+                          href="https://mail.google.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-primary hover:underline flex items-center gap-1"
+                          data-testid="link-gmail-contract"
+                        >
+                          Click for Gmail
+                          <span className="text-xs">→</span>
+                        </a>
+                        <a
+                          href="https://outlook.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-primary hover:underline flex items-center gap-1"
+                          data-testid="link-outlook-contract"
+                        >
+                          Click for Outlook
+                          <span className="text-xs">→</span>
+                        </a>
+                      </div>
+                      <p className="text-xs text-muted-foreground ml-0" data-testid="text-spam-warning">
+                        • Check your spam / junk mail if you could not find the contract mail in your inbox
+                      </p>
                     </div>
                   )}
                 </div>
