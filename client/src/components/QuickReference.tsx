@@ -39,7 +39,9 @@ export function QuickReference({ className = "" }: QuickReferenceProps) {
             <div className="flex-1 min-w-0 space-y-3">
               <p className="text-sm font-medium text-foreground">Full Stack & AI Curriculum</p>
               <Button
-                className="gap-2 bg-[#14243F] hover:bg-[#14243F]/90 text-white"
+                variant="default"
+                size="lg"
+                className="gap-2"
                 asChild
                 data-testid="button-view-curriculum"
               >
